@@ -1,26 +1,30 @@
 // @flow
 
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
 import { registerRootComponent } from 'expo'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import HomeScreen from './nav/home/components/HomeScreen'
+import { Button } from 'react-native'
+
+const Stack = createStackNavigator()
 
 class App extends React.Component<{}> {
+  // eslint-disable-next-line no-undef
+  createInfoButton = () => (<Button onPress={() => alert('Icon made by mavadee from www.flaticon.com')} title="Info"/>)
+
   render () {
     return (
-      <View style={styles.container}>
-        <Text>Hello world!!!!</Text>
-      </View>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={HomeScreen}
+            options={{
+              headerRight: this.createInfoButton
+            }}/>
+        </Stack.Navigator>
+      </NavigationContainer>
     )
   };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-})
 
 export default registerRootComponent(App)
