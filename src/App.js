@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { registerRootComponent } from 'expo';
 
-export default function App() {
+function App() {
   return (
     <View style={styles.container}>
       <Text>Hello world!</Text>
@@ -17,3 +18,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default registerRootComponent(App);
