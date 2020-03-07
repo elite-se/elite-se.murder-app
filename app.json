@@ -2,7 +2,9 @@
   "expo": {
     "name": "Murder Game",
     "slug": "MurderGame",
-    "privacy": "public",
+    "description": "",
+    "githubUrl": "https://github.com/elKei24/murder-app",
+    "privacy": "unlisted",
     "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
@@ -25,7 +27,13 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "de.elkei.murdergame",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "de.elkei.murdergame",
+      "versionCode": 1
     }
   }
 }
