@@ -1,0 +1,12 @@
+[ignore]
+
+[untyped]
+
+[include]
+
+[declarations]
+.*/node_modules/.*
+
+[libs]
+
+[options]
