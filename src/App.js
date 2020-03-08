@@ -4,7 +4,7 @@ import React from 'react'
 import { AppLoading, registerRootComponent } from 'expo'
 import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
-import Navigation from './nav/Navigation'
+import HomeScreen from './nav/home/components/HomeScreen'
 
 class App extends React.Component<{}, { isReady: boolean }> {
   constructor (props) {
@@ -28,7 +28,7 @@ class App extends React.Component<{}, { isReady: boolean }> {
       return <AppLoading />
     }
 
-    return <Navigation/>
+    return <HomeScreen/>
   }
 }
 
