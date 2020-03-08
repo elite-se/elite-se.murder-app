@@ -24,7 +24,7 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
-      "**/*"
+      "assets/*"
     ],
     "ios": {
       "bundleIdentifier": "de.elkei.murdergame",
