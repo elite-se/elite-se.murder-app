@@ -34,6 +34,9 @@
     "android": {
       "package": "de.elkei.murdergame",
       "versionCode": 1
+    },
+    "androidStatusBar": {
+      "backgroundColor": "#C1272D"
     }
   }
 }
