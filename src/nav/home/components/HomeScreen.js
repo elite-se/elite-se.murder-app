@@ -1,8 +1,10 @@
 // @flow
 
 import React from 'react'
-import { StyleSheet, View, Alert } from 'react-native'
-import { Body, Button, Container, Content, Header, Icon, Right, Text, Title } from 'native-base'
+import { Alert, StyleSheet, View } from 'react-native'
+import { Body, Button, Container, Content, Header, Icon, Right, Title } from 'native-base'
+import PublicHelloWorld from './PublicHelloWorld'
+import PrivateHelloWorld from './PrivateHelloWorld'
 
 export default class HomeScreen extends React.Component<{}> {
   onMorePress = () => Alert.alert('Credits', 'Icon made by mavadee from www.flaticon.com')
@@ -25,7 +27,8 @@ export default class HomeScreen extends React.Component<{}> {
       </Header>
       <Content>
         <View style={styles.container}>
-          <Text>Hello world!</Text>
+          <PublicHelloWorld/>
+          <PrivateHelloWorld/>
         </View>
       </Content>
     </Container>
@@ -35,8 +38,9 @@ export default class HomeScreen extends React.Component<{}> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    justifyContent: 'center',
+    margin: 5
   }
 })

@@ -3,11 +3,11 @@
 import type { Reducer } from 'redux'
 import type { Action } from './actions'
 
-export type SecureState = {
+export type SecureState = {|
   helloWorld: string
-}
+|}
 
-const secureReducer: Reducer<SecureState, Action> = (s = {}, a) => {
+const secureReducer: Reducer<SecureState, Action> = (s = { helloWorld: 'Hello secure world!' }, a) => {
   // noinspection JSRedundantSwitchStatement
   switch (a.type) {
     case 'SET_PRIVATE_HELLO_WORLD':
