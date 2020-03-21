@@ -3,7 +3,7 @@
 import createSecureStore from 'redux-persist-expo-securestore'
 import { combineReducers, createStore } from 'redux'
 import { persistReducer, persistStore } from 'redux-persist'
-import AsyncStorage from 'redux-persist/lib/storage'
+import { AsyncStorage } from 'react-native'
 import MainReducer from './MainReducer'
 import SecureReducer from './SecureReducer'
 
