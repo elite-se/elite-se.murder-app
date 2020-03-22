@@ -10,6 +10,7 @@ import type { Store } from 'redux'
 import type { Persistor } from 'redux-persist/es/types'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/es/integration/react'
+import { Root } from 'native-base'
 
 type StateType = {
   fontsReady: boolean,
@@ -41,11 +42,13 @@ class App extends React.Component<{}, StateType> {
     if (!fontsReady || !persistor || !store) {
       return <AppLoading />
     }
-    return <Provider store={store}>
-      <PersistGate loading={<AppLoading/>} persistor={persistor}>
-        <HomeScreen/>
-      </PersistGate>
-    </Provider>
+    return <Root>
+      <Provider store={store}>
+        <PersistGate loading={<AppLoading/>} persistor={persistor}>
+          <HomeScreen/>
+        </PersistGate>
+      </Provider>
+    </Root>
   }
 }
 

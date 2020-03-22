@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { Alert, StyleSheet, View } from 'react-native'
+import { Alert } from 'react-native'
 import { Body, Button, Container, Content, Header, Icon, Right, Title } from 'native-base'
 import GamesOverview from './GamesOverview'
 
@@ -25,20 +25,8 @@ export default class HomeScreen extends React.Component<{}> {
         </Right>
       </Header>
       <Content>
-        <View style={styles.container}>
-          <GamesOverview/>
-        </View>
+        <GamesOverview/>
       </Content>
     </Container>
   };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'stretch',
-    justifyContent: 'center',
-    margin: 5
-  }
-})
