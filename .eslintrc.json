@@ -1,6 +1,7 @@
 {
     "env": {
-        "es6": true
+        "es6": true,
+        "react-native/react-native": true
     },
     "extends": [
         "plugin:react/recommended",
@@ -21,6 +22,7 @@
     },
     "plugins": [
         "react",
+        "react-native",
         "flowtype"
     ],
     "rules": {
