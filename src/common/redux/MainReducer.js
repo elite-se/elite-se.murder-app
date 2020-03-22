@@ -2,16 +2,23 @@
 
 import type { Reducer } from 'redux'
 import type { Action } from './actions'
+import type { Game } from '../types/game'
 
 export type MainState = {|
-  helloWorld: string
+  games: Game[]
 |}
 
-const mainReducer: Reducer<MainState, Action> = (s = { helloWorld: 'Hello unsecure world!' }, a) => {
+const initialMainState: MainState = {
+  games: []
+}
+
+const mainReducer: Reducer<MainState, Action> = (s = initialMainState, a) => {
   // noinspection JSRedundantSwitchStatement
   switch (a.type) {
-    case 'SET_PUBLIC_HELLO_WORLD':
-      return { ...s, helloWorld: a.helloWorld }
+    case 'ADD_GAME':
+      return { ...s, games: [...s.games, a.game] }
+    case 'REPLACE_GAMES':
+      return { ...s, games: a.games }
     default:
       return s
   }

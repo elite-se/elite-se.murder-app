@@ -3,8 +3,7 @@
 import React from 'react'
 import { Alert, StyleSheet, View } from 'react-native'
 import { Body, Button, Container, Content, Header, Icon, Right, Title } from 'native-base'
-import PublicHelloWorld from './PublicHelloWorld'
-import PrivateHelloWorld from './PrivateHelloWorld'
+import GamesOverview from './GamesOverview'
 
 export default class HomeScreen extends React.Component<{}> {
   onMorePress = () => Alert.alert('Credits', 'Icon made by mavadee from www.flaticon.com')
@@ -27,8 +26,7 @@ export default class HomeScreen extends React.Component<{}> {
       </Header>
       <Content>
         <View style={styles.container}>
-          <PublicHelloWorld/>
-          <PrivateHelloWorld/>
+          <GamesOverview/>
         </View>
       </Content>
     </Container>

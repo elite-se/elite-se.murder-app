@@ -1,21 +1,23 @@
 // @flow
 
-export type SetPublicHelloWorldAction = {
-  type: 'SET_PUBLIC_HELLO_WORLD',
-  helloWorld: string
+import type { Game } from '../types/game'
+
+export type AddGameAction = {
+  type: 'ADD_GAME',
+  game: Game
 }
 
-export type SetPrivateHelloWorldAction = {
-  type: 'SET_PRIVATE_HELLO_WORLD',
-  helloWorld: string
+export type ReplaceGamesAction = {
+  type: 'REPLACE_GAMES',
+  games: Game[]
 }
 
-export type Action = SetPublicHelloWorldAction | SetPrivateHelloWorldAction
+export type Action = AddGameAction | ReplaceGamesAction
 
-export function setPublicHelloWorld (helloWorld: string): SetPublicHelloWorldAction {
-  return { type: 'SET_PUBLIC_HELLO_WORLD', helloWorld }
+export function addGame (game: Game): AddGameAction {
+  return { type: 'ADD_GAME', game }
 }
 
-export function setPrivateHelloWorld (helloWorld: string): SetPrivateHelloWorldAction {
-  return { type: 'SET_PRIVATE_HELLO_WORLD', helloWorld }
+export function replaceGames (games: Game[]): ReplaceGamesAction {
+  return { type: 'REPLACE_GAMES', games }
 }
