@@ -1,8 +1,8 @@
 // @flow
 
 import React from 'react'
-import { Toast, Form, Item, Input, Label, Button, Text, Spinner } from 'native-base'
-import type { GamePreferences } from '../../../common/types/gamePreferences'
+import { Button, Form, Input, Item, Label, Spinner, Text, Toast } from 'native-base'
+import type { NewGamePreferences } from '../../../common/types/gamePreferences'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import GamesApi from '../../../common/api/gamesApi'
 import type { Game, NewGame } from '../../../common/types/game'
@@ -47,7 +47,7 @@ class AddGameScreen extends React.Component<PropsType, StateType> {
       })
   }
 
-  onGamePrefsChanged = (preferences: GamePreferences) => this.setState(s => ({ newGame: { ...(s.newGame), preferences } }))
+  onGamePrefsChanged = (preferences: NewGamePreferences) => this.setState(s => ({ newGame: { ...(s.newGame), preferences } }))
   onGameTitleChanged = (title: string) => this.setState(s => ({ newGame: { ...(s.newGame), title } }))
   canSubmit = () => this.state.newGame.title.length >= 3 && !this.state.waiting
 
