@@ -39,7 +39,7 @@ class GamesOverview extends React.Component<PropsType, StateType> {
   checkGameDeleted: (Game) => Promise<boolean> = (game: Game) => GamesApi.getGame(game.id)
     .then(game => game.deleted)
     .catch(error => ApiError.handle(error, new Map([
-      [405, () => false]
+      [404, () => true]
     ])))
 
   refreshGames = () => {
