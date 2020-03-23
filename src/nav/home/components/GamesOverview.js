@@ -4,12 +4,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import type { Game } from '../../../common/types/game'
 import { getGames } from '../../../common/redux/selectors'
-import { Card, CardItem, Spinner, Text, Toast } from 'native-base'
+import { Spinner, Toast } from 'native-base'
 import type { Action } from '../../../common/redux/actions'
 import { removeGame } from '../../../common/redux/actions'
 import GamesApi from '../../../common/api/gamesApi'
 import { StyleSheet, View } from 'react-native'
 import ApiError from '../../../common/api/apiError'
+import GamesList from './GamesList'
 
 type PropsType = {|
   games: Game[],
@@ -59,22 +60,7 @@ class GamesOverview extends React.Component<PropsType, StateType> {
   render () {
     return <View style={styles.container}>
       {this.state.loading && <Spinner/>}
-      {this.props.games.map<Card>(game => (
-        <Card key={game.id}>
-          <CardItem header bordered>
-            <Text>{game.title}</Text>
-          </CardItem>
-          <CardItem>
-            <Text>ID: {game.id}</Text>
-          </CardItem>
-          <CardItem>
-            <Text>Code: {game.gameCode}</Text>
-          </CardItem>
-          <CardItem>
-            <Text>{!game.deleted && 'not '}deleted</Text>
-          </CardItem>
-        </Card>
-      )) }
+      <GamesList games={this.props.games}/>
     </View>
   }
 }
