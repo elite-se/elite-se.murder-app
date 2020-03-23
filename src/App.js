@@ -4,13 +4,13 @@ import React from 'react'
 import { AppLoading, registerRootComponent } from 'expo'
 import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
-import HomeScreen from './nav/home/components/HomeScreen'
 import configureStore from './common/redux/configureStore'
 import type { Store } from 'redux'
 import type { Persistor } from 'redux-persist/es/types'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/es/integration/react'
 import { Root } from 'native-base'
+import Navigation from './nav/Navigation'
 
 type StateType = {
   fontsReady: boolean,
@@ -45,7 +45,7 @@ class App extends React.Component<{}, StateType> {
     return <Root>
       <Provider store={store}>
         <PersistGate loading={<AppLoading/>} persistor={persistor}>
-          <HomeScreen/>
+          <Navigation/>
         </PersistGate>
       </Provider>
     </Root>

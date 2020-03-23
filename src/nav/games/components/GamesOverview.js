@@ -12,10 +12,12 @@ import { RefreshControl, StyleSheet, View } from 'react-native'
 import ApiError from '../../../common/api/apiError'
 import GamesList from './GamesList'
 import NewGameFab from './NewGameFab'
+import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 
 type PropsType = {|
   games: Game[],
-  removeGame: (Game) => Action
+  removeGame: (Game) => Action,
+  navigation: NavigationScreenProp<NavigationState>
 |}
 
 type StateType = {|
@@ -67,7 +69,7 @@ class GamesOverview extends React.Component<PropsType, StateType> {
           <GamesList games={this.props.games}/>
         </View>
       </Content>
-      <NewGameFab/>
+      <NewGameFab navigation={this.props.navigation}/>
     </View>
   }
 }
