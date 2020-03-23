@@ -6,7 +6,7 @@ import type { Game } from '../types/game'
 const gamesBackend = `${BACKEND}/games`
 
 export default class GamesApi {
-  static getGames (): Promise<Game[]> {
-    return safeFetch(gamesBackend).then(response => response.json())
+  static getGame (id: number): Promise<Game> {
+    return safeFetch(`${gamesBackend}/${id}`).then(response => response.json())
   }
 }

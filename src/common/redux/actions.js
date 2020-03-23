@@ -7,17 +7,17 @@ export type AddGameAction = {
   game: Game
 }
 
-export type ReplaceGamesAction = {
-  type: 'REPLACE_GAMES',
-  games: Game[]
+export type RemoveGameAction = {
+  type: 'REMOVE_GAME',
+  game: Game
 }
 
-export type Action = AddGameAction | ReplaceGamesAction
+export type Action = AddGameAction | RemoveGameAction
 
 export function addGame (game: Game): AddGameAction {
   return { type: 'ADD_GAME', game }
 }
 
-export function replaceGames (games: Game[]): ReplaceGamesAction {
-  return { type: 'REPLACE_GAMES', games }
+export function removeGame (game: Game): RemoveGameAction {
+  return { type: 'REMOVE_GAME', game }
 }

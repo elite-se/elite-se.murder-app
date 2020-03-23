@@ -3,6 +3,7 @@
 import type { Reducer } from 'redux'
 import type { Action } from './actions'
 import type { Game } from '../types/game'
+import { without } from 'lodash'
 
 export type MainState = {|
   games: Game[]
@@ -17,8 +18,8 @@ const mainReducer: Reducer<MainState, Action> = (s = initialMainState, a) => {
   switch (a.type) {
     case 'ADD_GAME':
       return { ...s, games: [...s.games, a.game] }
-    case 'REPLACE_GAMES':
-      return { ...s, games: a.games }
+    case 'REMOVE_GAME':
+      return { ...s, games: without(s.games, a.game) }
     default:
       return s
   }
