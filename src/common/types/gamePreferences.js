@@ -6,6 +6,6 @@ export type NewGamePreferences = {
 }
 
 export type GamePreferences = {
-  id: number,
-  ...NewGamePreferences
+  ...NewGamePreferences,
+  id: number
 }
