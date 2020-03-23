@@ -4,11 +4,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import type { Game } from '../../../common/types/game'
 import { getGames } from '../../../common/redux/selectors'
-import { Spinner, Toast } from 'native-base'
+import { Content, Toast } from 'native-base'
 import type { Action } from '../../../common/redux/actions'
 import { removeGame } from '../../../common/redux/actions'
 import GamesApi from '../../../common/api/gamesApi'
-import { StyleSheet, View } from 'react-native'
+import { RefreshControl, StyleSheet, View } from 'react-native'
 import ApiError from '../../../common/api/apiError'
 import GamesList from './GamesList'
 
@@ -58,10 +58,13 @@ class GamesOverview extends React.Component<PropsType, StateType> {
   }
 
   render () {
-    return <View style={styles.container}>
-      {this.state.loading && <Spinner/>}
-      <GamesList games={this.props.games}/>
-    </View>
+    const { loading } = this.state
+    const refreshControl = <RefreshControl refreshing={loading} onRefresh={this.refreshGames}/>
+    return <Content refreshControl={refreshControl}>
+      <View style={styles.container}>
+        <GamesList games={this.props.games}/>
+      </View>
+    </Content>
   }
 }
 

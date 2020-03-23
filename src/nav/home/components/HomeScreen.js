@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Alert } from 'react-native'
-import { Body, Button, Container, Content, Header, Icon, Right, Title } from 'native-base'
+import { Body, Button, Container, Header, Icon, Right, Title } from 'native-base'
 import GamesOverview from './GamesOverview'
 
 export default class HomeScreen extends React.Component<{}> {
@@ -24,9 +24,7 @@ export default class HomeScreen extends React.Component<{}> {
           </Button>
         </Right>
       </Header>
-      <Content>
-        <GamesOverview/>
-      </Content>
+      <GamesOverview/>
     </Container>
   };
 }
