@@ -11,6 +11,7 @@ import GamesApi from '../../../common/api/gamesApi'
 import { RefreshControl, StyleSheet, View } from 'react-native'
 import ApiError from '../../../common/api/apiError'
 import GamesList from './GamesList'
+import NewGameFab from './NewGameFab'
 
 type PropsType = {|
   games: Game[],
@@ -60,11 +61,14 @@ class GamesOverview extends React.Component<PropsType, StateType> {
   render () {
     const { loading } = this.state
     const refreshControl = <RefreshControl refreshing={loading} onRefresh={this.refreshGames}/>
-    return <Content refreshControl={refreshControl}>
-      <View style={styles.container}>
-        <GamesList games={this.props.games}/>
-      </View>
-    </Content>
+    return <View style={{ flex: 1 }}>
+      <Content refreshControl={refreshControl}>
+        <View style={styles.container}>
+          <GamesList games={this.props.games}/>
+        </View>
+      </Content>
+      <NewGameFab/>
+    </View>
   }
 }
 

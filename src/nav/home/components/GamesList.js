@@ -11,8 +11,9 @@ type PropsType = {|
 
 export default class GamesList extends React.Component<PropsType> {
   render () {
+    const { games } = this.props
     return <>
-      {this.props.games.map<Card>(game => (
+      {games.map<Card>(game => (
         <GameCard key={game.id} game={game}/>
       )) }
     </>
