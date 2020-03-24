@@ -9,6 +9,7 @@ import type { Game, NewGame } from '../../../common/types/game'
 import { addGame } from '../../../common/redux/actions'
 import { connect } from 'react-redux'
 import GamePrefsEditor from './GamePrefsEditor'
+import i18n from 'i18n-js'
 
 type PropsType = {|
   navigation: NavigationScreenProp<NavigationState>,
@@ -56,12 +57,12 @@ class AddGameScreen extends React.Component<PropsType, StateType> {
     const { title, preferences } = newGame
     return <Form>
       <Item>
-        <Label>Title</Label>
-        <Input placeholder='Title' value={title} onChangeText={this.onGameTitleChanged} autoFocus/>
+        <Label>{i18n.t('addGame.gameTitle')}</Label>
+        <Input placeholder={i18n.t('addGame.gameTitle')} value={title} onChangeText={this.onGameTitleChanged} autoFocus/>
       </Item>
       <GamePrefsEditor gamePrefs={preferences} onPrefsChange={this.onGamePrefsChanged} />
       <Button block style={{ margin: 15, marginTop: 50 }} disabled={!this.canSubmit()} onPress={this.onSubmit}>
-        { waiting ? <Spinner /> : <Text>Create game</Text> }
+        { waiting ? <Spinner /> : <Text>{i18n.t('addGame.submit')}</Text> }
       </Button>
     </Form>
   }

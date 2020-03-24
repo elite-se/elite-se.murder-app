@@ -8,11 +8,12 @@ import { Body, Button, Header, Icon, Left, Right, Title } from 'native-base'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import { Alert } from 'react-native'
 import GamesOverview from './games/components/GamesOverview'
+import i18n from 'i18n-js'
 
 const Stack = createStackNavigator()
 
 export default class Navigation extends React.Component<{}> {
-  onMorePress = () => Alert.alert('Credits', 'Icon made by mavadee from www.flaticon.com')
+  onMorePress = () => Alert.alert(i18n.t('credits.title'), i18n.t('credits.content'))
 
   buildHeader = ({ scene, previous, navigation }: {scene: any, previous: boolean, navigation: NavigationScreenProp<NavigationState>}) => {
     const { options } = scene.descriptor
@@ -49,8 +50,8 @@ export default class Navigation extends React.Component<{}> {
       <Stack.Navigator screenOptions={{
         header: this.buildHeader
       }}>
-        <Stack.Screen name='Games' component={GamesOverview} />
-        <Stack.Screen name='AddGame' component={AddGameScreen}/>
+        <Stack.Screen name='Games' component={GamesOverview} options={{ title: i18n.t('games.title') }} />
+        <Stack.Screen name='AddGame' component={AddGameScreen} options={{ title: i18n.t('addGame.title') }}/>
       </Stack.Navigator>
     </NavigationContainer>
   }

@@ -61,6 +61,6 @@ jobs:
           EXPO_CLI_PASSWORD: ${{ secrets.expo_password }}
       - name: Determine release channel
         id: det-release-channel
-        run: echo "::set-output name=channel-name::$(if [ "${{ github.ref }}" = "refs/heads/master" ]; then echo "default"; else echo "${{ github.ref }}" | cut -c12- | tr "/" _; fi)"
+        run: echo "::set-output name=channel-name::$(if [ "${{ github.ref }}" = "refs/heads/master" ]; then echo "default"; else echo "${{ github.ref }}" | cut -c12- | tr -c '[:alnum:]\r\n._-' _ | tr '[:upper:]' '[:lower:]'; fi)"
       - name: Publish to expo
         run: yarn expo publish --non-interactive --release-channel ${{ steps.det-release-channel.outputs.channel-name }}

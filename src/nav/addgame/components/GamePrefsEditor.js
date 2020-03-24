@@ -3,6 +3,7 @@
 import React from 'react'
 import type { GamePreferences, NewGamePreferences } from '../../../common/types/gamePreferences'
 import { CheckBox, Body, Text, ListItem } from 'native-base'
+import i18n from 'i18n-js'
 
 type PropsType<P> = {|
   gamePrefs: P,
@@ -25,11 +26,11 @@ export default class GamePrefsEditor<P: NewGamePreferences | GamePreferences> ex
     return <>
       <ListItem onPress={this.switchNoAttestors}>
         <CheckBox checked={!noAttestors} onPress={this.switchNoAttestors}/>
-        <Body><Text>Allow attestors</Text></Body>
+        <Body><Text>{i18n.t('gamePreferences.allowAttestors')}</Text></Body>
       </ListItem>
       <ListItem onPress={this.switchDailyReassignment}>
         <CheckBox checked={dailyReassignment} onPress={this.switchDailyReassignment}/>
-        <Body><Text>Reassign victims daily</Text></Body>
+        <Body><Text>{i18n.t('gamePreferences.dailyReassignment')}</Text></Body>
       </ListItem>
     </>
   }

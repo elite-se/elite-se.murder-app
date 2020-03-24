@@ -9,6 +9,9 @@ import type { Store } from 'redux'
 import type { Persistor } from 'redux-persist/es/types'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/es/integration/react'
+import i18n from 'i18n-js'
+import translations from './common/localization/translations'
+import * as Localization from 'expo-localization'
 import { Root } from 'native-base'
 import Navigation from './nav/Navigation'
 
@@ -17,6 +20,11 @@ type StateType = {
   store?: Store<*, *, *>,
   persistor?: ?Persistor
 }
+
+// Set up localization
+i18n.translations = translations
+i18n.locale = Localization.locale
+i18n.fallbacks = true
 
 class App extends React.Component<{}, StateType> {
   constructor (props) {

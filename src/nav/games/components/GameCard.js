@@ -3,6 +3,7 @@
 import React from 'react'
 import type { Game } from '../../../common/types/game'
 import { Card, CardItem, Text } from 'native-base'
+import i18n from 'i18n-js'
 
 type PropsType = {|
   game: Game
@@ -16,13 +17,10 @@ export default class GameCard extends React.Component<PropsType> {
         <Text>{game.title}</Text>
       </CardItem>
       <CardItem>
-        <Text>ID: {game.id}</Text>
+        <Text>{i18n.t('games.gamecard.id', { id: game.id.toString() })}</Text>
       </CardItem>
       <CardItem>
-        <Text>Code: {game.gameCode}</Text>
-      </CardItem>
-      <CardItem>
-        <Text>{!game.deleted && 'not '}deleted</Text>
+        <Text>{i18n.t('games.gamecard.code', { code: game.gameCode || '–' })}</Text>
       </CardItem>
     </Card>
   }
