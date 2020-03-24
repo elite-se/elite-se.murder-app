@@ -1,6 +1,7 @@
 {
     "env": {
-        "es6": true
+        "es6": true,
+        "react-native/react-native": true
     },
     "extends": [
         "plugin:react/recommended",
@@ -21,9 +22,13 @@
     },
     "plugins": [
         "react",
-        "flowtype"
+        "react-native",
+        "flowtype",
+        "react-hooks"
     ],
     "rules": {
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
     },
     "settings": {
         "react": {
