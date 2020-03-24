@@ -2,7 +2,7 @@
 
 import ApiError from './apiError'
 
-export const BACKEND = 'http://192.168.178.39:8080'
+export const BACKEND = 'https://murder-backend.herokuapp.com'
 
 type MyOptionsType = {
   ...$Diff<RequestOptions, { headers?: HeadersInit }>,
