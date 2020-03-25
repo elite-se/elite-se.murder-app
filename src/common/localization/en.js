@@ -18,5 +18,18 @@ export default {
   gamePreferences: {
     dailyReassignment: 'Reassign victims daily',
     allowAttestors: 'Allow attestors'
+  },
+  joinGame: {
+    title: 'Join game',
+    submit: 'Join game',
+    gameCode: {
+      label: 'Game code',
+      hint: 'If you do not have a game code, ask the person who created the game or create a new one yourself.'
+    },
+    name: {
+      label: 'Name',
+      placeholder: 'Schelli Schellhorn',
+      hint: 'You can choose a random name, but the other players should be able to identify you by that name.'
+    }
   }
 }

@@ -11,3 +11,4 @@ export type RootStoreType = {|
 export const getMainState = (store: RootStoreType) => store.main
 export const getSecureState = (store: RootStoreType) => store.secure
 export const getGames = (store: RootStoreType) => getMainState(store).games
+export const getPlayerName = (store: RootStoreType) => getMainState(store).playerName

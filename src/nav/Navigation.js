@@ -9,6 +9,7 @@ import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import { Alert } from 'react-native'
 import GamesOverview from './games/components/GamesOverview'
 import i18n from 'i18n-js'
+import JoinGameScreen from './joingame/components/JoinGameScreen'
 
 const Stack = createStackNavigator()
 
@@ -52,6 +53,7 @@ export default class Navigation extends React.Component<{}> {
       }}>
         <Stack.Screen name='Games' component={GamesOverview} options={{ title: i18n.t('games.title') }} />
         <Stack.Screen name='AddGame' component={AddGameScreen} options={{ title: i18n.t('addGame.title') }}/>
+        <Stack.Screen name='JoinGame' component={JoinGameScreen} options={{ title: i18n.t('joinGame.title') }}/>
       </Stack.Navigator>
     </NavigationContainer>
   }

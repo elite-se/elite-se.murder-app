@@ -6,11 +6,13 @@ import type { Game } from '../types/game'
 import { without } from 'lodash'
 
 export type MainState = {|
-  games: Game[]
+  games: Game[],
+  playerName: string
 |}
 
 const initialMainState: MainState = {
-  games: []
+  games: [],
+  playerName: ''
 }
 
 const mainReducer: Reducer<MainState, Action> = (s = initialMainState, a) => {
@@ -20,6 +22,8 @@ const mainReducer: Reducer<MainState, Action> = (s = initialMainState, a) => {
       return { ...s, games: [...s.games, a.game] }
     case 'REMOVE_GAME':
       return { ...s, games: without(s.games, a.game) }
+    case 'SET_PLAYER_NAME':
+      return { ...s, playerName: a.playerName }
     default:
       return s
   }

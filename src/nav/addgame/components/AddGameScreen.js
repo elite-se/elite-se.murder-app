@@ -58,7 +58,7 @@ class AddGameScreen extends React.Component<PropsType, StateType> {
     return <Form>
       <Item>
         <Label>{i18n.t('addGame.gameTitle')}</Label>
-        <Input placeholder={i18n.t('addGame.gameTitle')} value={title} onChangeText={this.onGameTitleChanged} autoFocus/>
+        <Input value={title} onChangeText={this.onGameTitleChanged} autoFocus/>
       </Item>
       <GamePrefsEditor gamePrefs={preferences} onPrefsChange={this.onGamePrefsChanged} />
       <Button block style={{ margin: 15, marginTop: 50 }} disabled={!this.canSubmit()} onPress={this.onSubmit}>

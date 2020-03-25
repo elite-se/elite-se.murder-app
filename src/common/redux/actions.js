@@ -12,6 +12,11 @@ export type RemoveGameAction = {
   game: Game
 }
 
+export type SetPlayernameAction = {
+  type: 'SET_PLAYER_NAME',
+  playerName: string
+}
+
 export type Action = AddGameAction | RemoveGameAction
 
 export function addGame (game: Game): AddGameAction {
@@ -20,4 +25,8 @@ export function addGame (game: Game): AddGameAction {
 
 export function removeGame (game: Game): RemoveGameAction {
   return { type: 'REMOVE_GAME', game }
+}
+
+export function setPlayerName (playerName: string): SetPlayernameAction {
+  return { type: 'SET_PLAYER_NAME', playerName }
 }
