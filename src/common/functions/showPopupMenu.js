@@ -16,7 +16,7 @@ const showPopupMenu = (menuEntries: MenuEntry[], ref: Ref<React.Component<any, a
     menuEntries.map(e => e.title),
     (error) => console.warn(error),
     (title, index) => {
-      if (index !== undefined) { index && menuEntries[index].handler() }
+      menuEntries[index || 0].handler()
     }
   )
 }

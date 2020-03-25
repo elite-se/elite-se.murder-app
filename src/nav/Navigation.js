@@ -8,6 +8,7 @@ import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import GamesOverview from './games/components/GamesOverview'
 import i18n from 'i18n-js'
 import ScreenHeader from '../common/components/ScreenHeader'
+import AboutScreen from './about/components/AboutScreen'
 
 const Stack = createStackNavigator()
 
@@ -30,7 +31,7 @@ export default class Navigation extends React.Component<{}> {
       }}>
         <Stack.Screen name='Games' component={GamesOverview} options={{ title: i18n.t('games.title') }} />
         <Stack.Screen name='AddGame' component={AddGameScreen} options={{ title: i18n.t('addGame.title') }}/>
-        <Stack.Screen name='About' component={AddGameScreen} options={{ title: i18n.t('about.title') }}/>
+        <Stack.Screen name='About' component={AboutScreen} options={{ title: i18n.t('about.title') }}/>
       </Stack.Navigator>
     </NavigationContainer>
   }

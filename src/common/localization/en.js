@@ -6,10 +6,6 @@ export default {
       code: 'Code: %{code}'
     }
   },
-  credits: {
-    title: 'Credits',
-    content: 'Icon made by mavadee from www.flaticon.com'
-  },
   addGame: {
     title: 'Create game',
     submit: 'Create game',
@@ -20,6 +16,17 @@ export default {
     allowAttestors: 'Allow attestors'
   },
   about: {
-    title: 'About'
+    title: 'App info',
+    unknown: 'unknown',
+    version: 'Version: ',
+    nativeVersion: 'Native app version: ',
+    appOwnership: 'App type: ',
+    releaseChannel: 'Release channel: ',
+    installationId: 'Installation ID: ',
+    deviceName: 'Device name: ',
+    deviceYearClass: 'Device year class: ',
+    attributions: 'Attributions: ',
+    iconAttribution: 'Icon made by mavadee from www.flaticon.com',
+    showLicenses: 'Show licenses'
   }
 }

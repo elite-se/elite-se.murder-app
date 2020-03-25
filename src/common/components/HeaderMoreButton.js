@@ -15,9 +15,6 @@ type PropsType = {|
 export default class HeaderMoreButton extends React.Component<PropsType> {
   moreIconRef = React.createRef<Icon>()
   menuEntries: MenuEntry[] = [{
-    title: i18n.t('credits.title'),
-    handler: () => Alert.alert(i18n.t('credits.title'), i18n.t('credits.content'))
-  }, {
     title: i18n.t('about.title'),
     handler: () => this.props.navigation.navigate('About')
   }]

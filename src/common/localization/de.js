@@ -6,10 +6,6 @@ export default {
       code: 'Code: %{code}'
     }
   },
-  credits: {
-    title: 'Danksagung',
-    content: 'Icon erstellt von mavadee von www.flaticon.com'
-  },
   addGame: {
     title: 'Spiel erstellen',
     submit: 'Spiel erstellen',
@@ -20,6 +16,16 @@ export default {
     allowAttestors: 'Augenzeugen erlauben'
   },
   about: {
-    title: 'Über'
+    title: 'App-Info',
+    unknown: 'unbekannt',
+    version: 'Version: ',
+    nativeVersion: 'Native App-Version: ',
+    appOwnership: 'App-Typ: ',
+    releaseChannel: 'Release-Kanal: ',
+    installationId: 'Installations-ID: ',
+    deviceName: 'Gerätename: ',
+    deviceYearClass: 'Gerät-Jahresklasse: ',
+    iconAttribution: 'Icon erstellt von mavadee von www.flaticon.com',
+    showLicenses: 'Lizenzen zeigen'
   }
 }
