@@ -2,7 +2,6 @@
 
 import React from 'react'
 import { Button, Icon } from 'native-base'
-import { Alert } from 'react-native'
 import i18n from 'i18n-js'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import type { MenuEntry } from '../functions/showPopupMenu'

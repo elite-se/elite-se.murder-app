@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { Content, Grid, Row, Text, Button } from 'native-base'
+import { Content, Grid, Row, Text } from 'native-base'
 import AboutRow from '../../addgame/components/AboutRow'
 import Constants from 'expo-constants'
 import i18n from 'i18n-js'
@@ -13,10 +13,6 @@ type PropsType = {|
 
 export default class AboutScreen extends React.Component<PropsType> {
   static valueOrUnknown (value?: string) { return value || i18n.t('about.unknown') }
-
-  onShowLicenses = () => {
-    this.props.navigation.navigate('Licenses')
-  }
 
   render () {
     return <Content style={{ padding: 10 }}>
@@ -34,11 +30,6 @@ export default class AboutScreen extends React.Component<PropsType> {
         <AboutRow nameKey='about.deviceName' value={AboutScreen.valueOrUnknown(Constants.deviceName)}/>
         <AboutRow nameKey='about.deviceYearClass' value={AboutScreen.valueOrUnknown(Constants.deviceYearClass)}/>
         <AboutRow nameKey='about.attributions' value={i18n.t('about.iconAttribution')}/>
-        <Row style={{ marginTop: 20 }}>
-          <Button bordered style={{ marginLeft: 'auto', marginRight: 'auto' }} onPress={this.onShowLicenses}>
-            <Text>{i18n.t('about.showLicenses')}</Text>
-          </Button>
-        </Row>
       </Grid>
     </Content>
   }

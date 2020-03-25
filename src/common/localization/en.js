@@ -26,7 +26,6 @@ export default {
     deviceName: 'Device name: ',
     deviceYearClass: 'Device year class: ',
     attributions: 'Attributions: ',
-    iconAttribution: 'Icon made by mavadee from www.flaticon.com',
-    showLicenses: 'Show licenses'
+    iconAttribution: 'Icon made by mavadee from www.flaticon.com'
   }
 }
