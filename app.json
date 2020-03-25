@@ -11,7 +11,7 @@
       "android",
       "web"
     ],
-    "version": "1.0.0",
+    "version": "0.1.0",
     "orientation": "portrait",
     "entryPoint": "./src/App.js",
     "icon": "./assets/icon.png",
@@ -27,12 +27,12 @@
       "assets/*"
     ],
     "ios": {
-      "bundleIdentifier": "de.elkei.murdergame",
+      "bundleIdentifier": "xyz.elite-se.murdergame",
       "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
-      "package": "de.elkei.murdergame",
+      "package": "xyz.elite_se.murdergame",
       "versionCode": 1
     },
     "androidStatusBar": {
