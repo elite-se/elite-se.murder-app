@@ -18,5 +18,8 @@ export default {
   gamePreferences: {
     dailyReassignment: 'Reassign victims daily',
     allowAttestors: 'Allow attestors'
+  },
+  about: {
+    title: 'About'
   }
 }
