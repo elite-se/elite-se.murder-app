@@ -4,7 +4,8 @@ export default {
     gamecard: {
       id: 'ID: %{id}',
       code: 'Code: %{code}'
-    }
+    },
+    empty: 'You do not take part in any games yet. Use the button below to add or join one.'
   },
   credits: {
     title: 'Credits',
