@@ -15,6 +15,7 @@ import SpinnerButton from '../../../common/components/SpinnerButton'
 import GamesApi from '../../../common/api/gamesApi'
 import GameCodeInput from './GameCodeInput'
 import { toastifyError } from '../../../common/funtions/errorHandling'
+import ApiError from '../../../common/api/apiError'
 
 export type PropsType = {|
   navigation: NavigationScreenProp<NavigationState>,
@@ -56,12 +57,15 @@ class JoinGameScreen extends React.Component<PropsType, StateType> {
 
     // call api
     GamesApi.joinGame(game.id, player)
-      .finally(() => this.setState({ waiting: false }))
-      .catch(toastifyError)
       .then(() => {
         addGame(game)
         this.props.navigation.navigate('Games')
       })
+      .catch(e => ApiError.handle(e, new Map([
+        [409, () => toastifyError(e, { text: i18n.t('joinGame.nameConflict') })] // handle player name conflict
+      ])))
+      .catch(toastifyError)
+      .finally(() => this.setState({ waiting: false }))
   }
 
   render () {

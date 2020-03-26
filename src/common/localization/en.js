@@ -30,7 +30,8 @@ export default {
       label: 'Name',
       placeholder: 'Schelli Schellhorn',
       hint: 'You can choose a random name, but the other players should be able to identify you by that name.'
-    }
+    },
+    nameConflict: 'A player with the same name has already joined. Choose another one.'
   },
   errors: {
     ok: 'OK'

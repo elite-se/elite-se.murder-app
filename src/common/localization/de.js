@@ -30,7 +30,8 @@ export default {
       label: 'Name',
       placeholder: 'Schelli Schellhorn',
       hint: 'Du kannst dir einen beliebigen Namen aussuchen, aber die anderen Spieler sollten dich anhand von ihm identifizieren können.'
-    }
+    },
+    nameConflict: 'Es ist bereits ein Spieler mit diesem Namen beigetreten. Wähle einen anderen.'
   },
   errors: {
     ok: 'OK'
