@@ -4,13 +4,13 @@ import React from 'react'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import { Button, Content, Form, Input, Item, Label, Spinner, Text } from 'native-base'
 import i18n from 'i18n-js'
-import { StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { getPlayerName } from '../../../common/redux/selectors'
 import { setPlayerName } from '../../../common/redux/actions'
-
-const GAME_CODE_LENGTH = 6
-const MIN_PLAYER_NAME_LENGTH = 3
+import PlayerNameInput from '../../../common/components/PlayerNameInput'
+import { InputDescription } from '../../../common/components/InputDescription'
+import { GAME_CODE_LENGTH } from '../../../common/types/game'
+import { MIN_PLAYER_NAME_LENGTH } from '../../../common/types/player'
 
 export type PropsType = {|
   navigation: NavigationScreenProp<NavigationState>,
@@ -61,18 +61,8 @@ class JoinGameScreen extends React.Component<PropsType, StateType> {
             autoCompleteType='off'
           />
         </Item>
-        <Text style={styles.gameCodeHint}>{i18n.t('joinGame.gameCode.hint')}</Text>
-        <Item>
-          <Label>{i18n.t('joinGame.name.label')}</Label>
-          <Input
-            value={playerName}
-            placeholder={i18n.t('joinGame.name.placeholder')}
-            onChangeText={this.onNameChange}
-            autoCapitalize='words'
-            autoCompleteType='name'
-          />
-        </Item>
-        <Text style={styles.gameCodeHint}>{i18n.t('joinGame.name.hint')}</Text>
+        <InputDescription>{i18n.t('joinGame.gameCode.hint')}</InputDescription>
+        <PlayerNameInput playerName={playerName} onPlayerNameChange={this.onNameChange}/>
         <Button block style={{ margin: 15, marginTop: 30 }} disabled={!this.canSubmit()} onPress={this.onSubmit}>
           { waiting ? <Spinner /> : <Text>{i18n.t('joinGame.submit')}</Text> }
         </Button>
@@ -80,16 +70,6 @@ class JoinGameScreen extends React.Component<PropsType, StateType> {
     </Content>
   }
 }
-
-const styles = StyleSheet.create({
-  gameCodeHint: {
-    paddingLeft: 15,
-    paddingRight: 15,
-    marginTop: 5,
-    marginBottom: 25,
-    fontSize: 12
-  }
-})
 
 export default connect<*, *, *, *, *, *>(s => ({
   lastPlayerName: getPlayerName(s)
