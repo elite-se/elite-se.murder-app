@@ -58,7 +58,7 @@ class JoinGameScreen extends React.Component<PropsType, StateType> {
     // call api
     GamesApi.joinGame(game.id, player)
       .then(() => {
-        addGame(game)
+        this.props.addGame(game)
         this.props.navigation.navigate('Games')
       })
       .catch(e => ApiError.handle(e, new Map([
