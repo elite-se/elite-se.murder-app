@@ -11,6 +11,10 @@ export default class GamesApi {
     return safeFetch(`${gamesBackend}/${id}`).then(response => response.json())
   }
 
+  static getGameByCode (gameCode: string): Promise<Game> {
+    return safeFetch(`${gamesBackend}/${gameCode}`).then(response => response.json())
+  }
+
   static createGame (game: NewGame): Promise<Game> {
     return safeFetch(`${gamesBackend}`, {
       method: 'POST',
