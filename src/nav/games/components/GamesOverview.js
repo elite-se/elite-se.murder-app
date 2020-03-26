@@ -4,7 +4,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import type { Game } from '../../../common/types/game'
 import { getGames } from '../../../common/redux/selectors'
-import { Content, Toast } from 'native-base'
+import { Content } from 'native-base'
 import type { Action } from '../../../common/redux/actions'
 import { removeGame } from '../../../common/redux/actions'
 import GamesApi from '../../../common/api/gamesApi'
@@ -13,6 +13,7 @@ import ApiError from '../../../common/api/apiError'
 import GamesList from './GamesList'
 import NewGameFab from './NewGameFab'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
+import { toastifyError } from '../../../common/funtions/errorHandling'
 
 type PropsType = {|
   games: Game[],
@@ -51,13 +52,9 @@ class GamesOverview extends React.Component<PropsType, StateType> {
       this.props.games.map(game => this.checkGameDeleted(game).then(deleted => {
         if (deleted) this.props.removeGame(game)
       }))
-    ).then(() => {
-      this.setState({ loading: false })
-    })
-      .catch(err => {
-        this.setState({ loading: false })
-        Toast.show({ text: err.message, duration: 3000, type: 'warning' })
-      })
+    )
+      .catch(toastifyError)
+      .finally(() => this.setState({ loading: false }))
   }
 
   render () {

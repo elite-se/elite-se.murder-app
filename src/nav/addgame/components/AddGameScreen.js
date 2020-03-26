@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { Button, Form, Input, Item, Label, Spinner, Text, Toast } from 'native-base'
+import { Button, Form, Input, Item, Label, Spinner, Text } from 'native-base'
 import type { NewGamePreferences } from '../../../common/types/gamePreferences'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import GamesApi from '../../../common/api/gamesApi'
@@ -10,6 +10,7 @@ import { addGame } from '../../../common/redux/actions'
 import { connect } from 'react-redux'
 import GamePrefsEditor from './GamePrefsEditor'
 import i18n from 'i18n-js'
+import { toastifyError } from '../../../common/funtions/errorHandling'
 
 type PropsType = {|
   navigation: NavigationScreenProp<NavigationState>,
@@ -38,14 +39,11 @@ class AddGameScreen extends React.Component<PropsType, StateType> {
     this.setState({ waiting: true })
     GamesApi.createGame(this.state.newGame)
       .then(game => {
-        this.setState({ waiting: false })
         this.props.addGame(game)
         this.props.navigation.goBack()
       })
-      .catch(err => {
-        this.setState({ waiting: false })
-        Toast.show({ text: err.message, type: 'warning' })
-      })
+      .catch(toastifyError)
+      .finally(() => this.setState({ waiting: false }))
   }
 
   onGamePrefsChanged = (preferences: NewGamePreferences) => this.setState(s => ({ newGame: { ...(s.newGame), preferences } }))

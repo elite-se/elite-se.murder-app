@@ -18,5 +18,8 @@ export default {
   gamePreferences: {
     dailyReassignment: 'Opfer täglich neu zuteilen',
     allowAttestors: 'Augenzeugen erlauben'
+  },
+  errors: {
+    ok: 'OK'
   }
 }

@@ -26,8 +26,8 @@ const addContentTypeHeader = (init?: MyOptionsType, contentType: string): MyOpti
 export const safeFetch = async (input: RequestInfo, init?: RequestOptions, contentType: string = 'application/json') => {
   const response = await fetch(input, addContentTypeHeader(init, contentType))
   if (!response.ok) {
-    const text = await response.text()
-    throw new ApiError(response.status, text)
+    const responseJson = await response.json()
+    throw new ApiError(responseJson)
   }
   return response
 }
