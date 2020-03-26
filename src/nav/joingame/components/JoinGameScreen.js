@@ -2,7 +2,7 @@
 
 import React from 'react'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
-import { Button, Content, Form, Input, Item, Label, Spinner, Text } from 'native-base'
+import { Content, Form, Input, Item, Label, Text } from 'native-base'
 import i18n from 'i18n-js'
 import { connect } from 'react-redux'
 import { getPlayerName } from '../../../common/redux/selectors'
@@ -11,6 +11,7 @@ import PlayerNameInput from '../../../common/components/PlayerNameInput'
 import { InputDescription } from '../../../common/components/InputDescription'
 import { GAME_CODE_LENGTH } from '../../../common/types/game'
 import { MIN_PLAYER_NAME_LENGTH } from '../../../common/types/player'
+import SpinnerButton from '../../../common/components/SpinnerButton'
 
 export type PropsType = {|
   navigation: NavigationScreenProp<NavigationState>,
@@ -29,11 +30,10 @@ class JoinGameScreen extends React.Component<PropsType, StateType> {
   state = {
     waiting: false,
     gameCode: this.props.gameCode || '',
-    playerName: this.props.lastPlayerName
+    playerName: this.props.lastPlayerName || ''
   }
 
   onGameCodeChange = (gameCode: string) => this.setState({ gameCode })
-
   onNameChange = (playerName: string) => this.setState({ playerName })
   canSubmit = () => {
     return this.state.gameCode.length === GAME_CODE_LENGTH && this.state.playerName.length >= MIN_PLAYER_NAME_LENGTH
@@ -41,6 +41,7 @@ class JoinGameScreen extends React.Component<PropsType, StateType> {
 
   onSubmit = () => {
     const { playerName } = this.state
+    this.setState({ waiting: true })
     this.props.setPlayerName(playerName)
   }
 
@@ -63,9 +64,9 @@ class JoinGameScreen extends React.Component<PropsType, StateType> {
         </Item>
         <InputDescription>{i18n.t('joinGame.gameCode.hint')}</InputDescription>
         <PlayerNameInput playerName={playerName} onPlayerNameChange={this.onNameChange}/>
-        <Button block style={{ margin: 15, marginTop: 30 }} disabled={!this.canSubmit()} onPress={this.onSubmit}>
-          { waiting ? <Spinner /> : <Text>{i18n.t('joinGame.submit')}</Text> }
-        </Button>
+        <SpinnerButton block style={{ margin: 15, marginTop: 30 }} disabled={!this.canSubmit()} onPress={this.onSubmit} waiting={waiting}>
+          <Text>{i18n.t('joinGame.submit')}</Text>
+        </SpinnerButton>
       </Form>
     </Content>
   }

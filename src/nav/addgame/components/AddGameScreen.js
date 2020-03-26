@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { Button, Form, Input, Item, Label, Spinner, Text, Toast } from 'native-base'
+import { Form, Input, Item, Label, Text, Toast } from 'native-base'
 import type { NewGamePreferences } from '../../../common/types/gamePreferences'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import GamesApi from '../../../common/api/gamesApi'
@@ -14,6 +14,7 @@ import i18n from 'i18n-js'
 import PlayerNameInput from '../../../common/components/PlayerNameInput'
 import { getPlayerName } from '../../../common/redux/selectors'
 import { MIN_PLAYER_NAME_LENGTH } from '../../../common/types/player'
+import SpinnerButton from '../../../common/components/SpinnerButton'
 
 type PropsType = {|
   navigation: NavigationScreenProp<NavigationState>,
@@ -73,9 +74,9 @@ class AddGameScreen extends React.Component<PropsType, StateType> {
       </Item>
       <GamePrefsEditor gamePrefs={preferences} onPrefsChange={this.onGamePrefsChanged} />
       <PlayerNameInput playerName={newGame.owner.playerName} onPlayerNameChange={this.onPlayerNameChanged}/>
-      <Button block style={{ margin: 15, marginTop: 50 }} disabled={!this.canSubmit()} onPress={this.onSubmit}>
-        { waiting ? <Spinner /> : <Text>{i18n.t('addGame.submit')}</Text> }
-      </Button>
+      <SpinnerButton block style={{ margin: 15, marginTop: 50 }} disabled={!this.canSubmit()} onPress={this.onSubmit} waiting={waiting}>
+        <Text>{i18n.t('addGame.submit')}</Text>
+      </SpinnerButton>
     </Form>
   }
 }
