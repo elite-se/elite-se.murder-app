@@ -12,10 +12,11 @@ import { setPlayerName } from '../../../common/redux/actions'
 const GAME_CODE_LENGTH = 6
 const MIN_PLAYER_NAME_LENGTH = 3
 
-type PropsType = {|
+export type PropsType = {|
   navigation: NavigationScreenProp<NavigationState>,
   lastPlayerName: string,
-  setPlayerName: (string) => void
+  setPlayerName: (string) => void,
+  gameCode?: string
 |}
 
 type StateType = {|
@@ -27,7 +28,7 @@ type StateType = {|
 class JoinGameScreen extends React.Component<PropsType, StateType> {
   state = {
     waiting: false,
-    gameCode: '',
+    gameCode: this.props.gameCode || '',
     playerName: this.props.lastPlayerName
   }
 
@@ -40,8 +41,7 @@ class JoinGameScreen extends React.Component<PropsType, StateType> {
 
   onSubmit = () => {
     const { playerName } = this.state
-    const { setPlayerName } = this.props
-    setPlayerName(playerName)
+    this.props.setPlayerName(playerName)
   }
 
   render () {
