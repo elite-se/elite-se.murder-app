@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { Form, Input, Item, Label, Text, Toast } from 'native-base'
+import { Form, Input, Item, Label, Text } from 'native-base'
 import type { NewGamePreferences } from '../../../common/types/gamePreferences'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import GamesApi from '../../../common/api/gamesApi'
@@ -15,6 +15,7 @@ import PlayerNameInput from '../../../common/components/PlayerNameInput'
 import { getPlayerName } from '../../../common/redux/selectors'
 import { MIN_PLAYER_NAME_LENGTH } from '../../../common/types/player'
 import SpinnerButton from '../../../common/components/SpinnerButton'
+import { toastifyError } from '../../../common/funtions/errorHandling'
 
 type PropsType = {|
   navigation: NavigationScreenProp<NavigationState>,
@@ -47,14 +48,11 @@ class AddGameScreen extends React.Component<PropsType, StateType> {
     this.setState({ waiting: true })
     GamesApi.createGame(this.state.newGame)
       .then(game => {
-        this.setState({ waiting: false })
         this.props.addGame(game)
         this.props.navigation.goBack()
       })
-      .catch(err => {
-        this.setState({ waiting: false })
-        Toast.show({ text: err.message, type: 'warning' })
-      })
+      .catch(toastifyError)
+      .finally(() => this.setState({ waiting: false }))
   }
 
   onGamePrefsChanged = (preferences: NewGamePreferences) => this.setState(s => ({ newGame: { ...(s.newGame), preferences } }))

@@ -31,5 +31,8 @@ export default {
       placeholder: 'Schelli Schellhorn',
       hint: 'You can choose a random name, but the other players should be able to identify you by that name.'
     }
+  },
+  errors: {
+    ok: 'OK'
   }
 }

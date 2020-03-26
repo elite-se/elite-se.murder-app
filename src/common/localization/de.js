@@ -31,5 +31,8 @@ export default {
       placeholder: 'Schelli Schellhorn',
       hint: 'Du kannst dir einen beliebigen Namen aussuchen, aber die anderen Spieler sollten dich anhand von ihm identifizieren können.'
     }
+  },
+  errors: {
+    ok: 'OK'
   }
 }
