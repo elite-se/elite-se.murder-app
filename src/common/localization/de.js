@@ -3,7 +3,13 @@ export default {
     title: 'Spiele',
     gamecard: {
       id: 'ID: %{id}',
-      code: 'Code: %{code}'
+      code: 'Code: %{code}',
+      owner: 'Erstellt von %{owner}',
+      numPlayers: {
+        one: 'Ein Teilnehmer',
+        other: '%{numPlayers} Teilnehmer',
+        zero: 'Kein Teilnehmer'
+      }
     }
   },
   credits: {

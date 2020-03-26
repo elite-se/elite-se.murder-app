@@ -3,7 +3,7 @@
 import type { Reducer } from 'redux'
 import type { Action } from './actions'
 import type { Game } from '../types/game'
-import { without } from 'lodash'
+import { concat, filter, without } from 'lodash'
 
 export type MainState = {|
   games: Game[],
@@ -18,8 +18,8 @@ const initialMainState: MainState = {
 const mainReducer: Reducer<MainState, Action> = (s = initialMainState, a) => {
   // noinspection JSRedundantSwitchStatement
   switch (a.type) {
-    case 'ADD_GAME':
-      return { ...s, games: [...s.games, a.game] }
+    case 'ADD_OR_REPLACE_GAME':
+      return { ...s, games: concat(filter(s.games, g => g.id !== a.game.id), a.game) }
     case 'REMOVE_GAME':
       return { ...s, games: without(s.games, a.game) }
     case 'SET_PLAYER_NAME':

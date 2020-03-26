@@ -6,7 +6,7 @@ import { Content, Form, Text } from 'native-base'
 import i18n from 'i18n-js'
 import { connect } from 'react-redux'
 import { getPlayerName } from '../../../common/redux/selectors'
-import { addGame, setPlayerName } from '../../../common/redux/actions'
+import { addOrReplaceGame, setPlayerName } from '../../../common/redux/actions'
 import PlayerNameInput from '../../../common/components/PlayerNameInput'
 import type { Game } from '../../../common/types/game'
 import type { NewPlayer } from '../../../common/types/player'
@@ -86,5 +86,5 @@ export default connect<*, *, *, *, *, *>(s => ({
   lastPlayerName: getPlayerName(s)
 }), {
   setPlayerName,
-  addGame
+  addGame: addOrReplaceGame
 })(JoinGameScreen)

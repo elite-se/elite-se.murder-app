@@ -19,5 +19,6 @@ export type Game = {|
     owner: Player,
     ...NewGame,
     preferences: GamePreferences,
-    owner: Player
+    owner: Player,
+    players: Player[]
 |}

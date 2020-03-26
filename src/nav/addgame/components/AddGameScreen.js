@@ -7,7 +7,7 @@ import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import GamesApi from '../../../common/api/gamesApi'
 import type { Game, NewGame } from '../../../common/types/game'
 import { MIN_GAME_TITLE_LENGTH } from '../../../common/types/game'
-import { addGame } from '../../../common/redux/actions'
+import { addOrReplaceGame } from '../../../common/redux/actions'
 import { connect } from 'react-redux'
 import GamePrefsEditor from './GamePrefsEditor'
 import i18n from 'i18n-js'
@@ -82,5 +82,5 @@ class AddGameScreen extends React.Component<PropsType, StateType> {
 export default connect<*, *, *, *, *, *>(s => ({
   lastPlayerName: getPlayerName(s)
 }), {
-  addGame
+  addGame: addOrReplaceGame
 })(AddGameScreen)
