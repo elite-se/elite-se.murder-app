@@ -72,7 +72,7 @@ class JoinGameScreen extends React.Component<PropsType, StateType> {
     const { waiting, player } = this.state
     return <Content style={{ margin: 10 }}>
       <Form>
-        <GameCodeInput gameChanged={this.onGameChange} initialCode={this.props.gameCode}/>
+        <GameCodeInput onGameChanged={this.onGameChange} initialCode={this.props.gameCode}/>
         <PlayerNameInput playerName={player.playerName} onPlayerNameChange={this.onNameChange}/>
         <SpinnerButton block style={{ margin: 15, marginTop: 30 }} disabled={!this.canSubmit()} onPress={this.onSubmit} waiting={waiting}>
           <Text>{i18n.t('joinGame.submit')}</Text>
