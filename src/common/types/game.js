@@ -6,6 +6,8 @@ import type { NewPlayer, Player } from './player'
 export const GAME_CODE_LENGTH = 6
 export const MIN_GAME_TITLE_LENGTH = 3
 
+export type GameState = 'PREPARATION' | 'RUNNING' | 'FINISHED'
+
 export type NewGame = {|
     title: string,
     preferences: NewGamePreferences,
@@ -16,6 +18,7 @@ export type Game = {|
     id: number,
     gameCode: string,
     deleted: boolean,
+    state: GameState,
     owner: Player,
     ...NewGame,
     preferences: GamePreferences,
