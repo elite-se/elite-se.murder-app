@@ -66,14 +66,15 @@ class GamesOverview extends React.Component<PropsType, StateType> {
 
   render () {
     const { loading } = this.state
+    const { navigation } = this.props
     const refreshControl = <RefreshControl refreshing={loading} onRefresh={this.refreshGames}/>
     return <View style={{ flex: 1 }}>
       <Content refreshControl={refreshControl}>
         <View style={styles.container}>
-          <GamesList games={sortBy(this.props.games, ['title', 'gameCode'])}/>
+          <GamesList games={sortBy(this.props.games, ['title', 'gameCode'])} navigation={navigation}/>
         </View>
       </Content>
-      <NewGameFab navigation={this.props.navigation}/>
+      <NewGameFab navigation={navigation}/>
     </View>
   }
 }

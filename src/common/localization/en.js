@@ -41,5 +41,10 @@ export default {
   },
   errors: {
     ok: 'OK'
+  },
+  game: {
+    participants: {
+      title: 'Participants'
+    }
   }
 }
