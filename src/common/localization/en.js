@@ -23,7 +23,8 @@ export default {
   },
   gamePreferences: {
     dailyReassignment: 'Reassign victims daily',
-    allowAttestors: 'Allow attestors'
+    allowAttestors: 'Allow attestors',
+    header: 'Rules'
   },
   joinGame: {
     title: 'Join game',
@@ -45,6 +46,9 @@ export default {
   game: {
     participants: {
       title: 'Participants'
+    },
+    preferences: {
+      title: 'Rules'
     }
   }
 }

@@ -1,8 +1,8 @@
 // @flow
 
 import React from 'react'
-import { Icon, Left, List, ListItem, Text } from 'native-base'
-import type { Game } from '../../../../common/types/game'
+import { Content, Icon, Left, List, ListItem, Text } from 'native-base'
+import type { Game } from '../../../common/types/game'
 import { sortBy } from 'lodash'
 
 type PropsType = {
@@ -12,7 +12,7 @@ type PropsType = {
 export default class GameParticipantsScreen extends React.Component<PropsType> {
   render () {
     const { players, owner } = this.props.game
-    return <List>
+    return <Content><List>
       {
         sortBy(players, ['playerName']).map(player =>
           <ListItem key={player.id}>
@@ -24,6 +24,6 @@ export default class GameParticipantsScreen extends React.Component<PropsType> {
           </ListItem>
         )
       }
-    </List>
+    </List></Content>
   }
 }

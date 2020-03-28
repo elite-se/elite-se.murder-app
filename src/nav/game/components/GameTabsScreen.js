@@ -5,7 +5,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Button, Footer, FooterTab, Icon, Text } from 'native-base'
 import type { NavigationScreenProp, NavigationState, NavigationStateRoute } from 'react-navigation'
 import i18n from 'i18n-js'
-import GameParticipantsScreen from './participants/GameParticipantsScreen'
+import GameParticipantsScreen from './GameParticipantsScreen'
+import GamePreferencesScreen from './GamePreferencesScreen'
 
 const Tab = createBottomTabNavigator()
 
@@ -50,6 +51,10 @@ export default class GameTabsScreen extends React.Component<PropsType> {
       <Tab.Screen name="Game.Participants" component={this.addGameProp(GameParticipantsScreen)} options={{
         title: i18n.t('game.participants.title'),
         icon: <Icon android='md-people' ios='ios-people'/>
+      }}/>
+      <Tab.Screen name="Game.Prefs" component={this.addGameProp(GamePreferencesScreen)} options={{
+        title: i18n.t('game.preferences.title'),
+        icon: <Icon android='md-settings' ios='ios-settings'/>
       }}/>
     </Tab.Navigator>
   }
