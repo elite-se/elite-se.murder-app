@@ -34,7 +34,9 @@ class AddGameScreen extends React.Component<PropsType, StateType> {
       title: '',
       preferences: {
         noAttestors: true,
-        dailyReassignment: false
+        dailyReassignment: false,
+        allowedWeapons: [],
+        furtherRules: ''
       },
       owner: {
         playerName: this.props.lastPlayerName || ''
@@ -65,7 +67,7 @@ class AddGameScreen extends React.Component<PropsType, StateType> {
   render () {
     const { waiting, newGame } = this.state
     const { title, preferences } = newGame
-    return <Content><Form>
+    return <Content padder><Form>
       <Item>
         <Label>{i18n.t('addGame.gameTitle')}</Label>
         <Input value={title} onChangeText={this.onGameTitleChanged} autoFocus/>

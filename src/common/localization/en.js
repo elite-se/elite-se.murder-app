@@ -24,7 +24,8 @@ export default {
   gamePreferences: {
     dailyReassignment: 'Reassign victims daily',
     allowAttestors: 'Allow attestors',
-    header: 'Rules'
+    header: 'Rules',
+    furtherRules: 'Further rules (optional)'
   },
   joinGame: {
     title: 'Join game',

@@ -12,7 +12,7 @@ type PropsType = {
 export default class GamePreferencesScreen extends React.Component<PropsType> {
   render () {
     const { preferences } = this.props.game
-    return <Content>
+    return <Content padder>
       <GamePrefsEditor gamePrefs={preferences}/>
     </Content>
   }

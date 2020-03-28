@@ -24,7 +24,8 @@ export default {
   gamePreferences: {
     dailyReassignment: 'Opfer täglich neu zuteilen',
     allowAttestors: 'Augenzeugen erlauben',
-    header: 'Regeln'
+    header: 'Regeln',
+    furtherRules: 'Weitere Regeln (optional)'
   },
   joinGame: {
     title: 'Spiel beitreten',
