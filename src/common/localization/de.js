@@ -20,7 +20,14 @@ export default {
   },
   gamePreferences: {
     dailyReassignment: 'Opfer täglich neu zuteilen',
-    allowAttestors: 'Augenzeugen erlauben'
+    allowAttestors: 'Augenzeugen erlauben',
+    header: 'Regeln',
+    onlySpecificWeapons: 'Nur bestimmte Waffen',
+    furtherRules: 'Weitere Regeln (optional)',
+    weapons: 'Waffen',
+    weaponsList: {
+      addPlaceholder: 'Tippen, um Waffe hinzuzufügen'
+    }
   },
   joinGame: {
     title: 'Spiel beitreten',
@@ -38,6 +45,14 @@ export default {
   },
   errors: {
     ok: 'OK'
+  },
+  game: {
+    participants: {
+      title: 'Teilnehmer'
+    },
+    preferences: {
+      title: 'Regeln'
+    }
   },
   about: {
     title: 'App-Info',

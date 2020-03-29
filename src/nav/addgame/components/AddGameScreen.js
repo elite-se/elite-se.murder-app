@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { Content, Form, Input, Item, Label, Text } from 'native-base'
+import { Content, Form, Input, Item, Label, Text, View } from 'native-base'
 import type { NewGamePreferences } from '../../../common/types/gamePreferences'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import GamesApi from '../../../common/api/gamesApi'
@@ -9,13 +9,13 @@ import type { Game, NewGame } from '../../../common/types/game'
 import { MIN_GAME_TITLE_LENGTH } from '../../../common/types/game'
 import { addOrReplaceGame } from '../../../common/redux/actions'
 import { connect } from 'react-redux'
-import GamePrefsEditor from './GamePrefsEditor'
 import i18n from 'i18n-js'
-import PlayerNameInput from '../../../common/components/PlayerNameInput'
 import { getPlayerName } from '../../../common/redux/selectors'
 import { MIN_PLAYER_NAME_LENGTH } from '../../../common/types/player'
 import SpinnerButton from '../../../common/components/SpinnerButton'
 import { toastifyError } from '../../../common/funtions/errorHandling'
+import PlayerNameInput from '../../../common/components/PlayerNameInput'
+import GamePrefsEditor from '../../gameprefs/GamePrefsEditor'
 
 type PropsType = {|
   navigation: NavigationScreenProp<NavigationState>,
@@ -34,7 +34,9 @@ class AddGameScreen extends React.Component<PropsType, StateType> {
       title: '',
       preferences: {
         noAttestors: true,
-        dailyReassignment: false
+        dailyReassignment: false,
+        allowedWeapons: [],
+        furtherRules: ''
       },
       owner: {
         playerName: this.props.lastPlayerName || ''
@@ -65,15 +67,21 @@ class AddGameScreen extends React.Component<PropsType, StateType> {
   render () {
     const { waiting, newGame } = this.state
     const { title, preferences } = newGame
-    return <Content>
+    return <Content padder>
       <Form>
         <Item>
           <Label>{i18n.t('addGame.gameTitle')}</Label>
           <Input value={title} onChangeText={this.onGameTitleChanged} autoFocus/>
         </Item>
-        <GamePrefsEditor gamePrefs={preferences} onPrefsChange={this.onGamePrefsChanged} />
+
+        <Item style={{ marginTop: 20 }} first>
+          <Label><Text>{i18n.t('gamePreferences.header')}</Text></Label>
+        </Item>
+        <GamePrefsEditor gamePrefs={preferences} onPrefsChange={this.onGamePrefsChanged} navigation={this.props.navigation}/>
+
+        <View style={{ marginTop: 20 }}/>
         <PlayerNameInput playerName={newGame.owner.playerName} onPlayerNameChange={this.onPlayerNameChanged}/>
-        <SpinnerButton block style={{ margin: 15, marginTop: 50 }} disabled={!this.canSubmit()} onPress={this.onSubmit} waiting={waiting}>
+        <SpinnerButton block style={{ margin: 15, marginTop: 20 }} disabled={!this.canSubmit()} onPress={this.onSubmit} waiting={waiting}>
           <Text>{i18n.t('addGame.submit')}</Text>
         </SpinnerButton>
       </Form>

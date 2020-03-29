@@ -20,7 +20,14 @@ export default {
   },
   gamePreferences: {
     dailyReassignment: 'Reassign victims daily',
-    allowAttestors: 'Allow attestors'
+    allowAttestors: 'Allow attestors',
+    header: 'Rules',
+    onlySpecificWeapons: 'Only specific weapons',
+    furtherRules: 'Further rules (optional)',
+    weapons: 'Weapons',
+    weaponsList: {
+      addPlaceholder: 'Type to add weapon'
+    }
   },
   joinGame: {
     title: 'Join game',
@@ -38,6 +45,14 @@ export default {
   },
   errors: {
     ok: 'OK'
+  },
+  game: {
+    participants: {
+      title: 'Participants'
+    },
+    preferences: {
+      title: 'Rules'
+    }
   },
   about: {
     title: 'App info',

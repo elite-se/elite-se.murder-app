@@ -73,7 +73,7 @@ class GamesOverview extends React.Component<PropsType, StateType> {
       <Content refreshControl={refreshControl}>
         { (games && !isEmpty(games))
           ? <View style={styles.container}>
-            <GamesList games={sortBy(games, ['title', 'gameCode'])}/>
+            <GamesList games={sortBy(games, ['title', 'gameCode'])} navigation={navigation}/>
           </View>
           : <View style={styles.hintContainer}>
             <Text style={styles.hintText}>{i18n.t('games.empty')}</Text>
