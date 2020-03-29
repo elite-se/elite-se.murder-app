@@ -54,7 +54,7 @@ export default class GameTabsScreen extends React.Component<PropsType> {
       }}/>
       <Tab.Screen name="Game.Prefs" component={this.addGameProp(GamePreferencesScreen)} options={{
         title: i18n.t('game.preferences.title'),
-        icon: <Icon android='md-settings' ios='ios-settings'/>
+        icon: <Icon name='whistle' type='MaterialCommunityIcons'/>
       }}/>
     </Tab.Navigator>
   }

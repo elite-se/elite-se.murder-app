@@ -27,7 +27,10 @@ export default {
     header: 'Rules',
     onlySpecificWeapons: 'Only specific weapons',
     furtherRules: 'Further rules (optional)',
-    weapons: 'Weapons'
+    weapons: 'Weapons',
+    weaponsList: {
+      addPlaceholder: 'Type to add weapon'
+    }
   },
   joinGame: {
     title: 'Join game',

@@ -10,7 +10,8 @@ import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 type PropsType = {|
   allowedWeapons: $ReadOnlyArray<NewWeapon | Weapon>,
   onWeaponsChange: NewWeapon[] => void,
-  navigation: NavigationScreenProp<NavigationState>
+  navigation: NavigationScreenProp<NavigationState>,
+  editable: boolean
 |}
 
 type StateType = {|
@@ -19,6 +20,10 @@ type StateType = {|
 |}
 
 export default class WeaponsEditor extends React.Component<PropsType, StateType> {
+  static defaultProps = {
+    editable: true
+  }
+
   state = {
     forceOnlySpecificWeaponsChecked: false,
     cachedWeapons: []
@@ -40,20 +45,26 @@ export default class WeaponsEditor extends React.Component<PropsType, StateType>
     }
   }
 
-  onShowWeapons = () => this.props.navigation.navigate('WeaponList', { weapons: this.props.allowedWeapons })
+  onShowWeapons = () => this.props.navigation.navigate('WeaponList', {
+    initialWeapons: this.props.allowedWeapons,
+    onWeaponsChanged: this.props.onWeaponsChange,
+    editable: this.props.editable
+  })
 
   render () {
     const checked = this.isOnlySpecificWeaponsChecked()
-    return <ListItem onPress={this.switchOnlySpecificWeapons}>
-      <CheckBox checked={checked} onPress={this.switchOnlySpecificWeapons}/>
+    return <ListItem onPress={this.props.editable && this.switchOnlySpecificWeapons}>
+      <CheckBox checked={checked} onPress={this.switchOnlySpecificWeapons} disabled={!this.props.editable}/>
       <Body>
         <Text>{i18n.t('gamePreferences.onlySpecificWeapons')}</Text>
       </Body>
-      <Right>
-        <Button disabled={!checked} small onPress={this.onShowWeapons}>
-          <Icon android='md-list' ios='ios-list' />
-        </Button>
-      </Right>
+      {(this.props.editable || this.isOnlySpecificWeaponsChecked()) &&
+        <Right>
+          <Button disabled={!checked} small onPress={this.onShowWeapons}>
+            <Icon android='md-list' ios='ios-list'/>
+          </Button>
+        </Right>
+      }
     </ListItem>
   }
 }

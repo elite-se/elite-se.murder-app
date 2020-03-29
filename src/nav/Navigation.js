@@ -50,8 +50,8 @@ export default class Navigation extends React.Component<{}> {
     )
   }
 
-  enrichWithPropFromParam = <Props: { route: NavigationStateRoute }>(Component: React.AbstractComponent<Props>, key: string) =>
-    (props: Props) => React.createElement(Component, { ...props, [key]: props?.route?.params?.[key] })
+  enrichWithPropsFromParams = <Props: {| route: NavigationStateRoute, navigation: NavigationScreenProp<NavigationState> |}>(Component: React.AbstractComponent<Props>) =>
+    (props: Props) => React.createElement(Component, ({ ...(props?.route?.params || {}), ...props }: any))
 
   render () {
     return <NavigationContainer>
@@ -62,7 +62,7 @@ export default class Navigation extends React.Component<{}> {
         <Stack.Screen name='AddGame' component={AddGameScreen} options={{ title: i18n.t('addGame.title') }}/>
         <Stack.Screen name='JoinGame' component={JoinGameScreen} options={{ title: i18n.t('joinGame.title') }}/>
         <Stack.Screen name='Game' component={GameTabsScreen} options={{ titleRetriever: (scene: Scene) => scene.route.params.game.title }}/>
-        <Stack.Screen name='WeaponList' component={this.enrichWithPropFromParam(WeaponListScreen, 'weapons')}
+        <Stack.Screen name='WeaponList' component={this.enrichWithPropsFromParams(WeaponListScreen)}
           options={{ title: i18n.t('gamePreferences.weapons') }}/>
       </Stack.Navigator>
     </NavigationContainer>
