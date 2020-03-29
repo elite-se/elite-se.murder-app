@@ -4,7 +4,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import type { Game } from '../../../common/types/game'
 import { getGames } from '../../../common/redux/selectors'
-import { Content, Toast } from 'native-base'
+import { Content, Text, Toast } from 'native-base'
 import type { Action } from '../../../common/redux/actions'
 import { removeGame } from '../../../common/redux/actions'
 import GamesApi from '../../../common/api/gamesApi'
@@ -13,6 +13,8 @@ import ApiError from '../../../common/api/apiError'
 import GamesList from './GamesList'
 import NewGameFab from './NewGameFab'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
+import { isEmpty } from 'lodash'
+import i18n from 'i18n-js'
 
 type PropsType = {|
   games: Game[],
@@ -62,14 +64,20 @@ class GamesOverview extends React.Component<PropsType, StateType> {
 
   render () {
     const { loading } = this.state
+    const { games, navigation } = this.props
     const refreshControl = <RefreshControl refreshing={loading} onRefresh={this.refreshGames}/>
     return <View style={{ flex: 1 }}>
       <Content refreshControl={refreshControl}>
-        <View style={styles.container}>
-          <GamesList games={this.props.games}/>
-        </View>
+        { (games && !isEmpty(games))
+          ? <View style={styles.container}>
+            <GamesList games={games}/>
+          </View>
+          : <View style={styles.hintContainer}>
+            <Text style={styles.hintText}>{i18n.t('games.empty')}</Text>
+          </View>
+        }
       </Content>
-      <NewGameFab navigation={this.props.navigation}/>
+      <NewGameFab navigation={navigation}/>
     </View>
   }
 }
@@ -81,6 +89,16 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     justifyContent: 'center',
     margin: 5
+  },
+  hintContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    margin: '16%'
+  },
+  hintText: {
+    textAlign: 'center',
+    textAlignVertical: 'center'
   }
 })
 

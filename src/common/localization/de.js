@@ -4,7 +4,8 @@ export default {
     gamecard: {
       id: 'ID: %{id}',
       code: 'Code: %{code}'
-    }
+    },
+    empty: 'Du bist noch kein Teilnehmer eines Spiels. Nutze den Knopf unten rechts, um eines zu erstellen oder einem beizutreten.'
   },
   addGame: {
     title: 'Spiel erstellen',
