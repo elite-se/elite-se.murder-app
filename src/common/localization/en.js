@@ -4,11 +4,8 @@ export default {
     gamecard: {
       id: 'ID: %{id}',
       code: 'Code: %{code}'
-    }
-  },
-  credits: {
-    title: 'Credits',
-    content: 'Icon made by mavadee from www.flaticon.com'
+    },
+    empty: 'You do not take part in any games yet. Use the button below to add or join one.'
   },
   addGame: {
     title: 'Create game',
@@ -21,5 +18,18 @@ export default {
   },
   errors: {
     ok: 'OK'
+  },
+  about: {
+    title: 'App info',
+    unknown: 'unknown',
+    version: 'Version: ',
+    nativeVersion: 'Native app version: ',
+    appOwnership: 'App type: ',
+    releaseChannel: 'Release channel: ',
+    installationId: 'Installation ID: ',
+    deviceName: 'Device name: ',
+    deviceYearClass: 'Device year class: ',
+    attributions: 'Attributions: ',
+    iconAttribution: 'Icon made by mavadee from www.flaticon.com'
   }
 }

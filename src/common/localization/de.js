@@ -4,11 +4,8 @@ export default {
     gamecard: {
       id: 'ID: %{id}',
       code: 'Code: %{code}'
-    }
-  },
-  credits: {
-    title: 'Danksagung',
-    content: 'Icon erstellt von mavadee von www.flaticon.com'
+    },
+    empty: 'Du bist noch kein Teilnehmer eines Spiels. Nutze den Knopf unten rechts, um eines zu erstellen oder einem beizutreten.'
   },
   addGame: {
     title: 'Spiel erstellen',
@@ -21,5 +18,17 @@ export default {
   },
   errors: {
     ok: 'OK'
+  },
+  about: {
+    title: 'App-Info',
+    unknown: 'unbekannt',
+    version: 'Version: ',
+    nativeVersion: 'Native App-Version: ',
+    appOwnership: 'App-Typ: ',
+    releaseChannel: 'Release-Kanal: ',
+    installationId: 'Installations-ID: ',
+    deviceName: 'Gerätename: ',
+    deviceYearClass: 'Gerät-Jahresklasse: ',
+    iconAttribution: 'Icon erstellt von mavadee von www.flaticon.com'
   }
 }
