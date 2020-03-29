@@ -6,7 +6,7 @@ import type { Game } from '../../../common/types/game'
 import { getGames } from '../../../common/redux/selectors'
 import { Content, Text } from 'native-base'
 import type { Action } from '../../../common/redux/actions'
-import { removeGame } from '../../../common/redux/actions'
+import { addOrReplaceGame, removeGame } from '../../../common/redux/actions'
 import GamesApi from '../../../common/api/gamesApi'
 import { RefreshControl, StyleSheet, View } from 'react-native'
 import ApiError from '../../../common/api/apiError'
@@ -14,12 +14,13 @@ import GamesList from './GamesList'
 import NewGameFab from './NewGameFab'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import { toastifyError } from '../../../common/funtions/errorHandling'
-import { isEmpty } from 'lodash'
+import { sortBy, isEmpty } from 'lodash'
 import i18n from 'i18n-js'
 
 type PropsType = {|
   games: Game[],
-  removeGame: (Game) => Action,
+  removeGame: Game => Action,
+  addGame: Game => Action,
   navigation: NavigationScreenProp<NavigationState>
 |}
 
@@ -37,23 +38,28 @@ class GamesOverview extends React.Component<PropsType, StateType> {
   }
 
   /**
-   * Tries to determine if the given game has been deleted by fetching it from the API again.
-   * @param game the game to check
-   * @returns {Promise<boolean>} a Promise that resolves to true if there still is a non-deleted game with the same ID, and to false if the
-   * game with that ID is deleted or does not exist any more.
+   * Fetches the game from the API again, using the id of the game. If it does not exist any more, null is returned.
+   * @param game the game to fetch again
+   * @returns {Promise<?Game>} if there still is a non-deleted game with the same ID, a promise with that game.
+   * A promise with null otherwise.
    */
-  checkGameDeleted: (Game) => Promise<boolean> = (game: Game) => GamesApi.getGame(game.id)
-    .then(game => game.deleted)
+  fetchGameAgain: (Game) => Promise<?Game> = (game: Game) => GamesApi.getGame(game.id)
+    .then(game => game.deleted ? null : game)
     .catch(error => ApiError.handle(error, new Map([
-      [404, () => true]
+      [404, () => null]
     ])))
 
   refreshGames = () => {
     this.setState({ loading: true })
     Promise.all(
-      this.props.games.map(game => this.checkGameDeleted(game).then(deleted => {
-        if (deleted) this.props.removeGame(game)
-      }))
+      this.props.games.map(game => this.fetchGameAgain(game)
+        .then(updatedGame => {
+          if (updatedGame) {
+            this.props.addGame(updatedGame)
+          } else {
+            this.props.removeGame(game)
+          }
+        }))
     )
       .catch(toastifyError)
       .finally(() => this.setState({ loading: false }))
@@ -67,7 +73,7 @@ class GamesOverview extends React.Component<PropsType, StateType> {
       <Content refreshControl={refreshControl}>
         { (games && !isEmpty(games))
           ? <View style={styles.container}>
-            <GamesList games={games}/>
+            <GamesList games={sortBy(games, ['title', 'gameCode'])}/>
           </View>
           : <View style={styles.hintContainer}>
             <Text style={styles.hintText}>{i18n.t('games.empty')}</Text>
@@ -102,5 +108,6 @@ const styles = StyleSheet.create({
 export default connect<*, *, *, *, *, *>(s => ({
   games: getGames(s)
 }), {
-  removeGame
+  removeGame,
+  addGame: addOrReplaceGame
 })(GamesOverview)

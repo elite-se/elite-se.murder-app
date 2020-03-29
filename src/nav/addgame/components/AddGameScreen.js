@@ -1,20 +1,26 @@
 // @flow
 
 import React from 'react'
-import { Button, Form, Input, Item, Label, Spinner, Text, Content } from 'native-base'
+import { Content, Form, Input, Item, Label, Text } from 'native-base'
 import type { NewGamePreferences } from '../../../common/types/gamePreferences'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import GamesApi from '../../../common/api/gamesApi'
 import type { Game, NewGame } from '../../../common/types/game'
-import { addGame } from '../../../common/redux/actions'
+import { MIN_GAME_TITLE_LENGTH } from '../../../common/types/game'
+import { addOrReplaceGame } from '../../../common/redux/actions'
 import { connect } from 'react-redux'
 import GamePrefsEditor from './GamePrefsEditor'
 import i18n from 'i18n-js'
+import PlayerNameInput from '../../../common/components/PlayerNameInput'
+import { getPlayerName } from '../../../common/redux/selectors'
+import { MIN_PLAYER_NAME_LENGTH } from '../../../common/types/player'
+import SpinnerButton from '../../../common/components/SpinnerButton'
 import { toastifyError } from '../../../common/funtions/errorHandling'
 
 type PropsType = {|
   navigation: NavigationScreenProp<NavigationState>,
-  addGame: (Game) => void
+  addGame: (Game) => void,
+  lastPlayerName: string
 |}
 
 type StateType = {|
@@ -29,6 +35,9 @@ class AddGameScreen extends React.Component<PropsType, StateType> {
       preferences: {
         noAttestors: true,
         dailyReassignment: false
+      },
+      owner: {
+        playerName: this.props.lastPlayerName || ''
       }
     },
     waiting: false
@@ -48,7 +57,10 @@ class AddGameScreen extends React.Component<PropsType, StateType> {
 
   onGamePrefsChanged = (preferences: NewGamePreferences) => this.setState(s => ({ newGame: { ...(s.newGame), preferences } }))
   onGameTitleChanged = (title: string) => this.setState(s => ({ newGame: { ...(s.newGame), title } }))
-  canSubmit = () => this.state.newGame.title.length >= 3 && !this.state.waiting
+  onPlayerNameChanged = (playerName: string) => this.setState(s => ({ newGame: { ...(s.newGame), owner: { ...s.newGame.owner, playerName } } }))
+  canSubmit = () => !this.state.waiting &&
+    this.state.newGame.title.length >= MIN_GAME_TITLE_LENGTH &&
+    this.state.newGame.owner.playerName.length >= MIN_PLAYER_NAME_LENGTH
 
   render () {
     const { waiting, newGame } = this.state
@@ -57,17 +69,20 @@ class AddGameScreen extends React.Component<PropsType, StateType> {
       <Form>
         <Item>
           <Label>{i18n.t('addGame.gameTitle')}</Label>
-          <Input placeholder={i18n.t('addGame.gameTitle')} value={title} onChangeText={this.onGameTitleChanged} autoFocus/>
+          <Input value={title} onChangeText={this.onGameTitleChanged} autoFocus/>
         </Item>
         <GamePrefsEditor gamePrefs={preferences} onPrefsChange={this.onGamePrefsChanged} />
-        <Button block style={{ margin: 15, marginTop: 50 }} disabled={!this.canSubmit()} onPress={this.onSubmit}>
-          { waiting ? <Spinner /> : <Text>{i18n.t('addGame.submit')}</Text> }
-        </Button>
+        <PlayerNameInput playerName={newGame.owner.playerName} onPlayerNameChange={this.onPlayerNameChanged}/>
+        <SpinnerButton block style={{ margin: 15, marginTop: 50 }} disabled={!this.canSubmit()} onPress={this.onSubmit} waiting={waiting}>
+          <Text>{i18n.t('addGame.submit')}</Text>
+        </SpinnerButton>
       </Form>
     </Content>
   }
 }
 
-export default connect<*, *, *, *, *, *>(null, {
-  addGame
+export default connect<*, *, *, *, *, *>(s => ({
+  lastPlayerName: getPlayerName(s)
+}), {
+  addGame: addOrReplaceGame
 })(AddGameScreen)
