@@ -25,7 +25,9 @@ export default {
     dailyReassignment: 'Reassign victims daily',
     allowAttestors: 'Allow attestors',
     header: 'Rules',
-    furtherRules: 'Further rules (optional)'
+    onlySpecificWeapons: 'Only specific weapons',
+    furtherRules: 'Further rules (optional)',
+    weapons: 'Weapons'
   },
   joinGame: {
     title: 'Join game',

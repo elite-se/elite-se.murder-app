@@ -1,16 +1,17 @@
 // @flow
 
-import React from 'react'
+import * as React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import AddGameScreen from './addgame/components/AddGameScreen'
 import { createStackNavigator, Scene } from '@react-navigation/stack'
 import { Body, Button, Header, Icon, Left, Right, Title } from 'native-base'
-import type { NavigationScreenProp, NavigationState } from 'react-navigation'
+import type { NavigationScreenProp, NavigationState, NavigationStateRoute } from 'react-navigation'
 import { Alert } from 'react-native'
 import GamesOverview from './games/components/GamesOverview'
 import i18n from 'i18n-js'
 import JoinGameScreen from './joingame/components/JoinGameScreen'
 import GameTabsScreen from './game/components/GameTabsScreen'
+import WeaponListScreen from './gameprefs/WeaponListScreen'
 
 const Stack = createStackNavigator()
 
@@ -49,6 +50,9 @@ export default class Navigation extends React.Component<{}> {
     )
   }
 
+  enrichWithPropFromParam = <Props: { route: NavigationStateRoute }>(Component: React.AbstractComponent<Props>, key: string) =>
+    (props: Props) => React.createElement(Component, { ...props, [key]: props?.route?.params?.[key] })
+
   render () {
     return <NavigationContainer>
       <Stack.Navigator screenOptions={{
@@ -58,6 +62,8 @@ export default class Navigation extends React.Component<{}> {
         <Stack.Screen name='AddGame' component={AddGameScreen} options={{ title: i18n.t('addGame.title') }}/>
         <Stack.Screen name='JoinGame' component={JoinGameScreen} options={{ title: i18n.t('joinGame.title') }}/>
         <Stack.Screen name='Game' component={GameTabsScreen} options={{ titleRetriever: (scene: Scene) => scene.route.params.game.title }}/>
+        <Stack.Screen name='WeaponList' component={this.enrichWithPropFromParam(WeaponListScreen, 'weapons')}
+          options={{ title: i18n.t('gamePreferences.weapons') }}/>
       </Stack.Navigator>
     </NavigationContainer>
   }

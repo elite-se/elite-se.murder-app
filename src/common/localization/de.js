@@ -25,7 +25,9 @@ export default {
     dailyReassignment: 'Opfer täglich neu zuteilen',
     allowAttestors: 'Augenzeugen erlauben',
     header: 'Regeln',
-    furtherRules: 'Weitere Regeln (optional)'
+    onlySpecificWeapons: 'Nur bestimmte Waffen',
+    furtherRules: 'Weitere Regeln (optional)',
+    weapons: 'Waffen'
   },
   joinGame: {
     title: 'Spiel beitreten',

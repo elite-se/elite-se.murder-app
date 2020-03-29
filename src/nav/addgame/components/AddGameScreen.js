@@ -10,12 +10,12 @@ import { MIN_GAME_TITLE_LENGTH } from '../../../common/types/game'
 import { addOrReplaceGame } from '../../../common/redux/actions'
 import { connect } from 'react-redux'
 import i18n from 'i18n-js'
-import PlayerNameInput from '../../../common/components/PlayerNameInput'
 import { getPlayerName } from '../../../common/redux/selectors'
 import { MIN_PLAYER_NAME_LENGTH } from '../../../common/types/player'
 import SpinnerButton from '../../../common/components/SpinnerButton'
 import { toastifyError } from '../../../common/funtions/errorHandling'
-import GamePrefsEditor from '../../../common/components/GamePrefsEditor'
+import PlayerNameInput from '../../../common/components/PlayerNameInput'
+import GamePrefsEditor from '../../gameprefs/GamePrefsEditor'
 
 type PropsType = {|
   navigation: NavigationScreenProp<NavigationState>,
@@ -76,7 +76,7 @@ class AddGameScreen extends React.Component<PropsType, StateType> {
       <Item style={{ marginTop: 20 }} first>
         <Label><Text>{i18n.t('gamePreferences.header')}</Text></Label>
       </Item>
-      <GamePrefsEditor gamePrefs={preferences} onPrefsChange={this.onGamePrefsChanged} />
+      <GamePrefsEditor gamePrefs={preferences} onPrefsChange={this.onGamePrefsChanged} navigation={this.props.navigation}/>
 
       <View style={{ marginTop: 20 }}/>
       <PlayerNameInput playerName={newGame.owner.playerName} onPlayerNameChange={this.onPlayerNameChanged}/>

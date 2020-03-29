@@ -47,7 +47,7 @@ export default class GameTabsScreen extends React.Component<PropsType> {
   addGameProp = <Props>(Component: React.AbstractComponent<Props>) => (props: Props) => <Component {...props} game={this.getGame()}/>
 
   render () {
-    return <Tab.Navigator tabBar={this.buildTabBar}>
+    return <Tab.Navigator tabBar={this.buildTabBar} backBehavior='none'>
       <Tab.Screen name="Game.Participants" component={this.addGameProp(GameParticipantsScreen)} options={{
         title: i18n.t('game.participants.title'),
         icon: <Icon android='md-people' ios='ios-people'/>
