@@ -67,23 +67,25 @@ class AddGameScreen extends React.Component<PropsType, StateType> {
   render () {
     const { waiting, newGame } = this.state
     const { title, preferences } = newGame
-    return <Content padder><Form>
-      <Item>
-        <Label>{i18n.t('addGame.gameTitle')}</Label>
-        <Input value={title} onChangeText={this.onGameTitleChanged} autoFocus/>
-      </Item>
+    return <Content padder>
+      <Form>
+        <Item>
+          <Label>{i18n.t('addGame.gameTitle')}</Label>
+          <Input value={title} onChangeText={this.onGameTitleChanged} autoFocus/>
+        </Item>
 
-      <Item style={{ marginTop: 20 }} first>
-        <Label><Text>{i18n.t('gamePreferences.header')}</Text></Label>
-      </Item>
-      <GamePrefsEditor gamePrefs={preferences} onPrefsChange={this.onGamePrefsChanged} navigation={this.props.navigation}/>
+        <Item style={{ marginTop: 20 }} first>
+          <Label><Text>{i18n.t('gamePreferences.header')}</Text></Label>
+        </Item>
+        <GamePrefsEditor gamePrefs={preferences} onPrefsChange={this.onGamePrefsChanged} navigation={this.props.navigation}/>
 
-      <View style={{ marginTop: 20 }}/>
-      <PlayerNameInput playerName={newGame.owner.playerName} onPlayerNameChange={this.onPlayerNameChanged}/>
-      <SpinnerButton block style={{ margin: 15, marginTop: 20 }} disabled={!this.canSubmit()} onPress={this.onSubmit} waiting={waiting}>
-        <Text>{i18n.t('addGame.submit')}</Text>
-      </SpinnerButton>
-    </Form></Content>
+        <View style={{ marginTop: 20 }}/>
+        <PlayerNameInput playerName={newGame.owner.playerName} onPlayerNameChange={this.onPlayerNameChanged}/>
+        <SpinnerButton block style={{ margin: 15, marginTop: 20 }} disabled={!this.canSubmit()} onPress={this.onSubmit} waiting={waiting}>
+          <Text>{i18n.t('addGame.submit')}</Text>
+        </SpinnerButton>
+      </Form>
+    </Content>
   }
 }
 
