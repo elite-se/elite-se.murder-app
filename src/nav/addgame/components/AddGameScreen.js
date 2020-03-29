@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { Form, Input, Item, Label, Text } from 'native-base'
+import { Form, Input, Item, Label, Text, Content } from 'native-base'
 import type { NewGamePreferences } from '../../../common/types/gamePreferences'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import GamesApi from '../../../common/api/gamesApi'
@@ -65,17 +65,19 @@ class AddGameScreen extends React.Component<PropsType, StateType> {
   render () {
     const { waiting, newGame } = this.state
     const { title, preferences } = newGame
-    return <Form>
-      <Item>
-        <Label>{i18n.t('addGame.gameTitle')}</Label>
-        <Input value={title} onChangeText={this.onGameTitleChanged} autoFocus/>
+    return <Content>
+      <Form>
+        <Item>
+          <Label>{i18n.t('addGame.gameTitle')}</Label>
+          <Input value={title} onChangeText={this.onGameTitleChanged} autoFocus/>
       </Item>
       <GamePrefsEditor gamePrefs={preferences} onPrefsChange={this.onGamePrefsChanged} />
       <PlayerNameInput playerName={newGame.owner.playerName} onPlayerNameChange={this.onPlayerNameChanged}/>
       <SpinnerButton block style={{ margin: 15, marginTop: 50 }} disabled={!this.canSubmit()} onPress={this.onSubmit} waiting={waiting}>
         <Text>{i18n.t('addGame.submit')}</Text>
-      </SpinnerButton>
-    </Form>
+        </SpinnerButton>
+      </Form>
+    </Content>
   }
 }
 
