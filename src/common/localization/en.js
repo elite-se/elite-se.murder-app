@@ -16,6 +16,9 @@ export default {
     dailyReassignment: 'Reassign victims daily',
     allowAttestors: 'Allow attestors'
   },
+  errors: {
+    ok: 'OK'
+  },
   about: {
     title: 'App info',
     unknown: 'unknown',

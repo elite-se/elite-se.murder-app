@@ -1,11 +1,19 @@
 // @flow
 
-export default class ApiError extends Error {
-  code: number
+export type ApiErrorResponse = {
+  timestamp: string,
+  status: number,
+  error: string,
+  message: string,
+  path: string
+}
 
-  constructor (code: number, message: string) {
-    super(message)
-    this.code = code
+export default class ApiError extends Error {
+  response: ApiErrorResponse
+
+  constructor (response: ApiErrorResponse) {
+    super(response.message === 'No message available' ? response.error : response.message)
+    this.response = response
   }
 
   /**
@@ -20,7 +28,7 @@ export default class ApiError extends Error {
     if (error instanceof ApiError) {
       error = (error: ApiError)
       for (const [code, handler] of codeHandlers.entries()) {
-        if (code === error.code) return handler(error)
+        if (code === error.response.status) return handler(error)
       }
     }
     throw error

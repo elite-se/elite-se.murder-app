@@ -16,6 +16,9 @@ export default {
     dailyReassignment: 'Opfer täglich neu zuteilen',
     allowAttestors: 'Augenzeugen erlauben'
   },
+  errors: {
+    ok: 'OK'
+  },
   about: {
     title: 'App-Info',
     unknown: 'unbekannt',
