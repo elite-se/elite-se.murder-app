@@ -45,7 +45,7 @@ class GamesOverview extends React.Component<PropsType, StateType> {
    */
   fetchGameAgain: (Game) => Promise<?Game> = (game: Game) => GamesApi.getGame(game.id)
     .then(game => game.deleted ? null : game)
-    .catch(error => ApiError.handle(error, new Map([
+    .catch(ApiError.handle(new Map([
       [404, () => null]
     ])))
 

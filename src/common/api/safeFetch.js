@@ -34,14 +34,13 @@ export const addHeader = (init?: MyOptionsType, headerName: string, headerValue:
 export const safeFetch = async (input: RequestInfo, init?: RequestOptions, contentType: string = CONTENT_TYPE_DEFAULT) => {
   const response = await fetch(input, addHeader(init, CONTENT_TYPE_HEADER, contentType))
   if (!response.ok) {
-    const responseText = await response.text()
-    let responseJson
+    let errorDetails
     try {
-      responseJson = JSON.parse(responseText)
-    } catch (err) {
-      throw Error('API response was neither status OK nor in JSON format:\n' + responseText)
+      errorDetails = await response.json()
+    } catch {
+      errorDetails = undefined
     }
-    throw new ApiError(responseJson)
+    throw new ApiError(response, errorDetails)
   }
   return response
 }

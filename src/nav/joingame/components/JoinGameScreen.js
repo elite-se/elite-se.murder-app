@@ -61,8 +61,8 @@ class JoinGameScreen extends React.Component<PropsType, StateType> {
         this.props.addGame(game)
         this.props.navigation.navigate('Games')
       })
-      .catch(e => ApiError.handle(e, new Map([
-        [409, () => toastifyError(e, { text: i18n.t('joinGame.nameConflict') })] // handle player name conflict
+      .catch(ApiError.handle(new Map([
+        [409, (e) => toastifyError(e, { text: i18n.t('joinGame.nameConflict') })] // handle player name conflict
       ])))
       .catch(toastifyError)
       .finally(() => this.setState({ waiting: false }))

@@ -49,7 +49,7 @@ export default class GameCodeInput extends React.Component<PropsType, StateType>
         .then(game => {
           if (this.setValidityStateIfCodeMatches(code, 'VALID')) this.props.onGameChanged(game)
         })
-        .catch(e => ApiError.handle(e, new Map([
+        .catch(ApiError.handle(new Map([
           [404, () => this.setValidityStateIfCodeMatches(code, 'INVALID')]
         ])))
         .catch(e => {
