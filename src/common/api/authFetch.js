@@ -1,7 +1,6 @@
 // @flow
 
 import * as Random from 'expo-random'
-import type { ApplicationUser } from '../types/ApplicationUser'
 import Constants from 'expo-constants'
 import AuthApi from './paths/authApi'
 import { getApiToken, getApplicationUser } from '../redux/selectors'
@@ -9,27 +8,37 @@ import store from '../redux/configureStore'
 import { setApplicationUser, setToken } from '../redux/actions'
 import { addHeader, safeFetch } from './safeFetch'
 import { AUTH_HEADER } from './api'
+import ApiError from './apiError'
 
 const TOKEN_REFRESH_GAP_MS = 1000 * 60 // 1min
 const PASSWORD_LENGTH = 30
 
 const generatePassword = async () => Random.getRandomBytesAsync(PASSWORD_LENGTH).then(ints => new TextDecoder('utf-8').decode(ints))
 
-const createNewAccount = async () => {
-  const user: ApplicationUser = {
+const createNewUser = async () => {
+  return {
     deviceId: Constants.installationId,
     password: await generatePassword()
   }
-  return AuthApi.signUp(user).then(() => user)
 }
 
 const fetchNewToken = async () => {
   let user = getApplicationUser(store.getState())
   if (!user) {
-    user = await createNewAccount()
+    user = await createNewUser()
+    await AuthApi.signUp(user)
     store.dispatch(setApplicationUser(user))
   }
+
+  // sign up stored user again if server forgot us
+  const userConst = user
+  const handleUserUnknown = async () => {
+    await AuthApi.signUp(userConst)
+    return AuthApi.login(userConst)
+  }
+
   return await AuthApi.login(user)
+    .catch(ApiError.handle(new Map([[403, handleUserUnknown]])))
 }
 
 const getAuthToken = async () => {
