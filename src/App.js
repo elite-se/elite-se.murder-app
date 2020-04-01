@@ -4,7 +4,7 @@ import React from 'react'
 import { AppLoading, registerRootComponent } from 'expo'
 import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
-import configureStore from './common/redux/configureStore'
+import { persistor, store } from './common/redux/configureStore'
 import type { Store } from 'redux'
 import type { Persistor } from 'redux-persist/es/types'
 import { Provider } from 'react-redux'
@@ -35,7 +35,6 @@ class App extends React.Component<{}, StateType> {
   }
 
   async componentDidMount () {
-    const { store, persistor } = configureStore()
     this.setState({ store, persistor })
     await Font.loadAsync({
       Roboto: require('native-base/Fonts/Roboto.ttf'),
