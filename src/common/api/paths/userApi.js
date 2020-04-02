@@ -5,9 +5,9 @@ import type { ApplicationUser } from '../../types/ApplicationUser'
 import ApiToken from '../../types/ApiToken'
 import { safeFetch } from '../safeFetch'
 
-const authBackend = `${BACKEND}/auth`
+const authBackend = `${BACKEND}/user`
 
-export default class AuthApi {
+export default class UserApi {
   static signUp (user: ApplicationUser): Promise<Response> {
     return safeFetch(`${authBackend}/sign-up`, {
       method: 'POST',

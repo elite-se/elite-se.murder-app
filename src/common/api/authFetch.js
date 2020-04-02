@@ -2,7 +2,7 @@
 
 import * as Random from 'expo-random'
 import Constants from 'expo-constants'
-import AuthApi from './paths/authApi'
+import UserApi from './paths/userApi'
 import { getApiToken, getApplicationUser } from '../redux/selectors'
 import store from '../redux/configureStore'
 import { setApplicationUser, setToken } from '../redux/actions'
@@ -26,18 +26,18 @@ const fetchNewToken = async () => {
   let user = getApplicationUser(store.getState())
   if (!user) {
     user = await createNewUser()
-    await AuthApi.signUp(user)
+    await UserApi.signUp(user)
     store.dispatch(setApplicationUser(user))
   }
 
   // sign up stored user again if server forgot us
   const userConst = user
   const handleUserUnknown = async () => {
-    await AuthApi.signUp(userConst)
-    return AuthApi.login(userConst)
+    await UserApi.signUp(userConst)
+    return UserApi.login(userConst)
   }
 
-  return await AuthApi.login(user)
+  return await UserApi.login(user)
     .catch(ApiError.handle(new Map([[403, handleUserUnknown]])))
 }
 
