@@ -64,6 +64,7 @@ export default {
     installationId: 'Installations-ID: ',
     deviceName: 'Gerätename: ',
     deviceYearClass: 'Gerät-Jahresklasse: ',
-    iconAttribution: 'Icon erstellt von mavadee von www.flaticon.com'
+    iconAttribution: 'Icon erstellt von mavadee von www.flaticon.com',
+    pushToken: 'Push-Token: '
   }
 }
