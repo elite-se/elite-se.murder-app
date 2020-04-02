@@ -22,7 +22,7 @@ export default class AboutScreen extends React.Component<PropsType, StateType> {
   }
 
   componentDidMount () {
-    Notifications.getDevicePushTokenAsync()
+    Notifications.getExpoPushTokenAsync()
       .then(pushToken => this.setState({ pushToken }))
       .catch(() => {}) // nothing to do, just leave value unknown
   }
