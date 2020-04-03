@@ -16,6 +16,7 @@ import { Root } from 'native-base'
 import Navigation from './nav/Navigation'
 import registerForPushNotifications from './common/functions/registerForPushNotifications'
 import { toastifyError } from './common/funtions/errorHandling'
+import UserApi from './common/api/paths/userApi'
 
 type StateType = {
   fontsReady: boolean,
@@ -40,8 +41,9 @@ class App extends React.Component<{}, StateType> {
     // init redux
     this.setState({ store, persistor })
 
-    // register for push notifications
+    // register for push notifications and update locale on server
     registerForPushNotifications().catch(toastifyError)
+    UserApi.setLocale(i18n.currentLocale()).catch(toastifyError)
 
     // preload fonts
     await Font.loadAsync({

@@ -12,4 +12,11 @@ export default class UserApi {
       body: token
     }, 'text/plain')
   }
+
+  static setLocale (locale: string): Promise<Response> {
+    return authFetch(`${userBackend}/locale`, {
+      method: 'PUT',
+      body: locale
+    }, 'text/plain')
+  }
 }
