@@ -24,11 +24,11 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-yarn-
     - name: Install dependencies
-      run: yarn
+      run: yarn --frozen-lockfile --non-interactive --prefer-offline -s
     - name: Lint
       run: yarn lint
     - name: Flow
-      run: yarn flow
+      run: yarn flow --quiet
 
   deploy:
     name: Deployment to Expo
@@ -54,7 +54,7 @@ jobs:
       - name: Increase inotify limit
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
       - name: Install dependencies
-        run: yarn
+        run: yarn --frozen-lockfile --non-interactive --prefer-offline -s
       - name: Decrypt firebase config
         run: gpg --passphrase '${{ secrets.firebase_password }}' --batch --pinentry-mode loopback -o google-services.json -d google-services.json.gpg
         working-directory: ./android
