@@ -55,6 +55,9 @@ jobs:
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
       - name: Install dependencies
         run: yarn
+      - name: Decrypt firebase config
+        run: gpg --passphrase '${{ secrets.firebase_password }}' --batch --pinentry-mode loopback -o google-services.json -d google-services.json.gpg
+        working-directory: ./android
       - name: Log in to expo
         run: yarn expo login --non-interactive -u ${{ secrets.expo_username }}
         env:
