@@ -5,6 +5,7 @@ import { Notifications } from 'expo'
 import * as Permissions from 'expo-permissions'
 import UserApi from '../api/paths/userApi'
 import { toastifyError } from '../funtions/errorHandling'
+import i18n from 'i18n-js'
 
 const channelDefaults: Channel = {
   sound: true,
@@ -17,12 +18,14 @@ const CHANNEL_ASSIGNMENT = 'MURDER_ASSIGNMENT'
 function createAndroidChannels () {
   Notifications.createChannelAndroidAsync(CHANNEL_GAME_END, {
     ...channelDefaults,
-    name: 'Game end',
+    name: i18n.t('notificationChannels.gameEnd.name'),
+    description: i18n.t('notificationChannels.gameEnd.description'),
     priority: 'low'
   })
   Notifications.createChannelAndroidAsync(CHANNEL_ASSIGNMENT, {
     ...channelDefaults,
-    name: 'Murder assignment',
+    name: i18n.t('notificationChannels.assignment.name'),
+    description: i18n.t('notificationChannels.assignment.description'),
     priority: 'high'
   })
 }
