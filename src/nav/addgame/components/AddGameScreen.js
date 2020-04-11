@@ -7,7 +7,7 @@ import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import GamesApi from '../../../common/api/paths/gamesApi'
 import type { Game, NewGame } from '../../../common/types/game'
 import { MIN_GAME_TITLE_LENGTH } from '../../../common/types/game'
-import { addOrReplaceGame } from '../../../common/redux/actions'
+import { addOrReplaceGame, setPlayerName } from '../../../common/redux/actions'
 import { connect } from 'react-redux'
 import i18n from 'i18n-js'
 import { getPlayerName } from '../../../common/redux/selectors'
@@ -19,7 +19,8 @@ import GamePrefsEditor from '../../gameprefs/GamePrefsEditor'
 
 type PropsType = {|
   navigation: NavigationScreenProp<NavigationState>,
-  addGame: (Game) => void,
+  addGame: Game => void,
+  setPlayerName: string => void,
   lastPlayerName: string
 |}
 
@@ -51,6 +52,7 @@ class AddGameScreen extends React.Component<PropsType, StateType> {
     GamesApi.createGame(this.state.newGame)
       .then(game => {
         this.props.addGame(game)
+        this.props.setPlayerName(game.owner.playerName)
         this.props.navigation.goBack()
       })
       .catch(toastifyError)
@@ -92,5 +94,6 @@ class AddGameScreen extends React.Component<PropsType, StateType> {
 export default connect<*, *, *, *, *, *>(s => ({
   lastPlayerName: getPlayerName(s)
 }), {
-  addGame: addOrReplaceGame
+  addGame: addOrReplaceGame,
+  setPlayerName
 })(AddGameScreen)
