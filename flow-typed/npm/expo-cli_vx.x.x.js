@@ -1,4 +1,4 @@
-// flow-typed signature: 69c1323d5bc5eae0f248e234f695f53d
+// flow-typed signature: cb37ef0ee143e38d555ebe434574fb48
 // flow-typed version: <<STUB>>/expo-cli_v^3.15.4/flow_v0.120.1
 
 /**
@@ -79,6 +79,18 @@ declare module 'expo-cli/build/CommandError' {
 }
 
 declare module 'expo-cli/build/commands/android' {
+  declare module.exports: any;
+}
+
+declare module 'expo-cli/build/commands/apply' {
+  declare module.exports: any;
+}
+
+declare module 'expo-cli/build/commands/apply/configureAndroidProjectAsync' {
+  declare module.exports: any;
+}
+
+declare module 'expo-cli/build/commands/apply/configureIOSProjectAsync' {
   declare module.exports: any;
 }
 
@@ -167,6 +179,10 @@ declare module 'expo-cli/build/commands/eject' {
 }
 
 declare module 'expo-cli/build/commands/eject/Eject' {
+  declare module.exports: any;
+}
+
+declare module 'expo-cli/build/commands/eject/LegacyEject' {
   declare module.exports: any;
 }
 
@@ -315,6 +331,14 @@ declare module 'expo-cli/build/commands/utils/cli-table' {
 }
 
 declare module 'expo-cli/build/commands/utils/ClientUpgradeUtils' {
+  declare module.exports: any;
+}
+
+declare module 'expo-cli/build/commands/utils/logConfigWarnings' {
+  declare module.exports: any;
+}
+
+declare module 'expo-cli/build/commands/utils/maybeBailOnGitStatusAsync' {
   declare module.exports: any;
 }
 
@@ -495,6 +519,15 @@ declare module 'expo-cli/build/CommandError.js' {
 declare module 'expo-cli/build/commands/android.js' {
   declare module.exports: $Exports<'expo-cli/build/commands/android'>;
 }
+declare module 'expo-cli/build/commands/apply.js' {
+  declare module.exports: $Exports<'expo-cli/build/commands/apply'>;
+}
+declare module 'expo-cli/build/commands/apply/configureAndroidProjectAsync.js' {
+  declare module.exports: $Exports<'expo-cli/build/commands/apply/configureAndroidProjectAsync'>;
+}
+declare module 'expo-cli/build/commands/apply/configureIOSProjectAsync.js' {
+  declare module.exports: $Exports<'expo-cli/build/commands/apply/configureIOSProjectAsync'>;
+}
 declare module 'expo-cli/build/commands/build-native/Builder.js' {
   declare module.exports: $Exports<'expo-cli/build/commands/build-native/Builder'>;
 }
@@ -569,6 +602,9 @@ declare module 'expo-cli/build/commands/eject.js' {
 }
 declare module 'expo-cli/build/commands/eject/Eject.js' {
   declare module.exports: $Exports<'expo-cli/build/commands/eject/Eject'>;
+}
+declare module 'expo-cli/build/commands/eject/LegacyEject.js' {
+  declare module.exports: $Exports<'expo-cli/build/commands/eject/LegacyEject'>;
 }
 declare module 'expo-cli/build/commands/export.js' {
   declare module.exports: $Exports<'expo-cli/build/commands/export'>;
@@ -686,6 +722,12 @@ declare module 'expo-cli/build/commands/utils/cli-table.js' {
 }
 declare module 'expo-cli/build/commands/utils/ClientUpgradeUtils.js' {
   declare module.exports: $Exports<'expo-cli/build/commands/utils/ClientUpgradeUtils'>;
+}
+declare module 'expo-cli/build/commands/utils/logConfigWarnings.js' {
+  declare module.exports: $Exports<'expo-cli/build/commands/utils/logConfigWarnings'>;
+}
+declare module 'expo-cli/build/commands/utils/maybeBailOnGitStatusAsync.js' {
+  declare module.exports: $Exports<'expo-cli/build/commands/utils/maybeBailOnGitStatusAsync'>;
 }
 declare module 'expo-cli/build/commands/utils/ProjectUtils.js' {
   declare module.exports: $Exports<'expo-cli/build/commands/utils/ProjectUtils'>;
