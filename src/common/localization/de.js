@@ -47,6 +47,22 @@ export default {
     ok: 'OK'
   },
   game: {
+    assignments: {
+      title: 'Mordauftrag',
+      empty: 'Das Spiel hat noch begonnen',
+      current: {
+        claim: 'Dein aktueller Mordauftrag gilt %{target}'
+      },
+      former: {
+        claim: 'Du hast %{target} erfolgreich ermordet'
+      },
+      failed: {
+        claim: 'Du hast das vor %{target} das zeitliche gesegnet'
+      },
+      leaved: {
+        claim: 'Du hast dich Feige aus dem Staub gemacht'
+      }
+    },
     participants: {
       title: 'Teilnehmer'
     },

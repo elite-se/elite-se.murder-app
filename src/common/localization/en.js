@@ -47,6 +47,22 @@ export default {
     ok: 'OK'
   },
   game: {
+    assignments: {
+      title: 'Murder assignment',
+      empty: 'Game has not started yet',
+      current: {
+        claim: 'Your current murder assignee is %{target}'
+      },
+      former: {
+        claim: 'You have successfully murdered %{target}'
+      },
+      failed: {
+        claim: 'You have died before killing %{target}'
+      },
+      leaved: {
+        claim: 'You ran away like a coward'
+      }
+    },
     participants: {
       title: 'Participants'
     },
