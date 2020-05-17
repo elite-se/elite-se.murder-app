@@ -6,7 +6,7 @@ import { GAME_CODE_LENGTH } from '../../../common/types/game'
 import { Icon, Input, Item, Label, Spinner } from 'native-base'
 import i18n from 'i18n-js'
 import { InputDescription } from '../../../common/components/InputDescription'
-import GamesApi from '../../../common/api/gamesApi'
+import GamesApi from '../../../common/api/paths/gamesApi'
 import ApiError from '../../../common/api/apiError'
 import { toastifyError } from '../../../common/funtions/errorHandling'
 
@@ -49,7 +49,7 @@ export default class GameCodeInput extends React.Component<PropsType, StateType>
         .then(game => {
           if (this.setValidityStateIfCodeMatches(code, 'VALID')) this.props.onGameChanged(game)
         })
-        .catch(e => ApiError.handle(e, new Map([
+        .catch(ApiError.handle(new Map([
           [404, () => this.setValidityStateIfCodeMatches(code, 'INVALID')]
         ])))
         .catch(e => {

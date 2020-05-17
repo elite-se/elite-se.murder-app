@@ -1,36 +1,44 @@
 // @flow
 
-export type ApiErrorResponse = {
+import { isEmpty } from 'lodash'
+
+export type ApiErrorDetails = {|
   timestamp: string,
   status: number,
   error: string,
   message: string,
   path: string
-}
+|}
 
 export default class ApiError extends Error {
-  response: ApiErrorResponse
+  response: Response
+  errorDetails: ?ApiErrorDetails
 
-  constructor (response: ApiErrorResponse) {
-    super(response.message === 'No message available' ? response.error : response.message)
+  constructor (response: Response, errorDetails?: ApiErrorDetails) {
+    super((errorDetails && !isEmpty(errorDetails.message) && errorDetails.message !== 'No message available')
+      ? errorDetails.message
+      : response.statusText)
     this.response = response
+    this.errorDetails = errorDetails
   }
 
   /**
+   * Returns a function that takes errors and tries to handle them.
    * If error is an ApiError and a handler for its status code is provided, this handler is called and the result returned.
    * Otherwise, the error is rethrown.
    *
-   * @param error the error that should be handled
    * @param codeHandlers a mapping of status codes to actions
-   * @returns {*} the value returned by the corresponding handler
+   * @returns {*} the error handler
    */
-  static handle<R> (error: Error, codeHandlers: Map<number, (ApiError) => R>): R {
-    if (error instanceof ApiError) {
-      error = (error: ApiError)
-      for (const [code, handler] of codeHandlers.entries()) {
-        if (code === error.response.status) return handler(error)
+  static handle<R> (codeHandlers: Map<number, (ApiError) => R>): (Error => R) {
+    return (error: Error) => {
+      if (error instanceof ApiError) {
+        error = (error: ApiError)
+        for (const [code, handler] of codeHandlers.entries()) {
+          if (code === error.response.status) return handler(error)
+        }
       }
+      throw error
     }
-    throw error
   }
 }

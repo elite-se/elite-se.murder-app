@@ -12,7 +12,7 @@ import type { Game } from '../../../common/types/game'
 import type { NewPlayer } from '../../../common/types/player'
 import { MIN_PLAYER_NAME_LENGTH } from '../../../common/types/player'
 import SpinnerButton from '../../../common/components/SpinnerButton'
-import GamesApi from '../../../common/api/gamesApi'
+import GamesApi from '../../../common/api/paths/gamesApi'
 import GameCodeInput from './GameCodeInput'
 import { toastifyError } from '../../../common/funtions/errorHandling'
 import ApiError from '../../../common/api/apiError'
@@ -61,8 +61,8 @@ class JoinGameScreen extends React.Component<PropsType, StateType> {
         this.props.addGame(game)
         this.props.navigation.navigate('Games')
       })
-      .catch(e => ApiError.handle(e, new Map([
-        [409, () => toastifyError(e, { text: i18n.t('joinGame.nameConflict') })] // handle player name conflict
+      .catch(ApiError.handle(new Map([
+        [409, (e) => toastifyError(e, { text: i18n.t('joinGame.nameConflict') })] // handle player name conflict
       ])))
       .catch(toastifyError)
       .finally(() => this.setState({ waiting: false }))

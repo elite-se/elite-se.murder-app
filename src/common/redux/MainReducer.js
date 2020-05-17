@@ -5,10 +5,10 @@ import type { Action } from './actions'
 import type { Game } from '../types/game'
 import { concat, filter, without } from 'lodash'
 
-export type MainState = {|
+export type MainState = {
   games: Game[],
   playerName: string
-|}
+}
 
 const initialMainState: MainState = {
   games: [],
