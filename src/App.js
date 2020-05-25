@@ -14,6 +14,8 @@ import translations from './common/localization/translations'
 import * as Localization from 'expo-localization'
 import { Root } from 'native-base'
 import Navigation from './nav/Navigation'
+import registerForPushNotifications from './common/functions/registerForPushNotifications'
+import { toastifyError } from './common/funtions/errorHandling'
 
 type StateType = {
   fontsReady: boolean,
@@ -35,7 +37,13 @@ class App extends React.Component<{}, StateType> {
   }
 
   async componentDidMount () {
+    // init redux
     this.setState({ store, persistor })
+
+    // register for push notifications
+    registerForPushNotifications().catch(toastifyError)
+
+    // preload fonts
     await Font.loadAsync({
       Roboto: require('native-base/Fonts/Roboto.ttf'),
       Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
