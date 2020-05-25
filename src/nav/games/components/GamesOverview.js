@@ -16,6 +16,7 @@ import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import { toastifyError } from '../../../common/funtions/errorHandling'
 import { isEmpty, sortBy } from 'lodash'
 import i18n from 'i18n-js'
+import { EventSubscription, Notification, Notifications } from 'expo'
 
 type PropsType = {|
   games: Game[],
@@ -29,12 +30,36 @@ type StateType = {|
 |}
 
 class GamesOverview extends React.Component<PropsType, StateType> {
+  notificationsSubscription: ?EventSubscription = null
   state = {
     loading: false
   }
 
+  handleNotification = (notification: Notification) => {
+    const gameId: ?number = notification.data?.gameId
+    const selected = (notification.origin === 'selected')
+    if (!gameId) return
+
+    GamesApi.getGame(gameId)
+      .catch(ApiError.handle(new Map([[404, () => null]])))
+      .then(game => {
+        if (game) {
+          this.props.addGame(game)
+          if (selected) {
+            this.props.navigation.navigate('Game', { game })
+          }
+        }
+      })
+      .catch(toastifyError)
+  }
+
   componentDidMount () {
+    this.notificationsSubscription = Notifications.addListener(this.handleNotification)
     this.refreshGames()
+  }
+
+  componentWillUnmount () {
+    this.notificationsSubscription && this.notificationsSubscription.remove()
   }
 
   /**

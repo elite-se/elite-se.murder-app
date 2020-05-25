@@ -66,5 +66,15 @@ export default {
     deviceYearClass: 'Gerät-Jahresklasse: ',
     iconAttribution: 'Icon erstellt von mavadee von www.flaticon.com',
     pushToken: 'Push-Token: '
+  },
+  notificationChannels: {
+    gameEnd: {
+      name: 'Spiel zu Ende',
+      description: 'Erscheint einmal beim Spielende'
+    },
+    assignment: {
+      name: 'Mord-Zuteilung',
+      description: 'Erscheint, wenn dir ein Opfer zugewiesen wird'
+    }
   }
 }

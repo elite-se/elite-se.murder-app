@@ -14,7 +14,7 @@ import translations from './common/localization/translations'
 import * as Localization from 'expo-localization'
 import { Root } from 'native-base'
 import Navigation from './nav/Navigation'
-import registerForPushNotifications from './common/functions/registerForPushNotifications'
+import initPushNotifications from './common/functions/initPushNotifications'
 import { toastifyError } from './common/funtions/errorHandling'
 import UserApi from './common/api/paths/userApi'
 
@@ -42,7 +42,7 @@ class App extends React.Component<{}, StateType> {
     this.setState({ store, persistor })
 
     // register for push notifications and update locale on server
-    registerForPushNotifications().catch(toastifyError)
+    initPushNotifications()
     UserApi.setLocale(i18n.currentLocale()).catch(toastifyError)
 
     // preload fonts
