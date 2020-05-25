@@ -32,13 +32,13 @@ const fetchNewToken = async () => {
 
   // sign up stored user again if server forgot us
   const userConst = user
-  const handleUserUnknown = async () => {
+  const handleUserIsUnknown = async () => {
     await AuthApi.signUp(userConst)
     return AuthApi.login(userConst)
   }
 
-  return await AuthApi.login(user)
-    .catch(ApiError.handle(new Map([[403, handleUserUnknown]])))
+  return AuthApi.login(user)
+    .catch(ApiError.handle(new Map([[403, handleUserIsUnknown]])))
 }
 
 const getAuthToken = async () => {
