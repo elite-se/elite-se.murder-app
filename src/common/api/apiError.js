@@ -2,13 +2,13 @@
 
 import { isEmpty } from 'lodash'
 
-export type ApiErrorDetails = {
+export type ApiErrorDetails = {|
   timestamp: string,
   status: number,
   error: string,
   message: string,
   path: string
-}
+|}
 
 export default class ApiError extends Error {
   response: Response

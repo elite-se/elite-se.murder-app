@@ -53,8 +53,9 @@ export default class WeaponsEditor extends React.Component<PropsType, StateType>
 
   render () {
     const checked = this.isOnlySpecificWeaponsChecked()
-    return <ListItem onPress={this.props.editable && this.switchOnlySpecificWeapons}>
-      <CheckBox checked={checked} onPress={this.switchOnlySpecificWeapons} disabled={!this.props.editable}/>
+    const onPress = this.props.editable ? this.switchOnlySpecificWeapons : undefined
+    return <ListItem onPress={onPress}>
+      <CheckBox checked={checked} onPress={onPress} disabled={!this.props.editable}/>
       <Body>
         <Text>{i18n.t('gamePreferences.onlySpecificWeapons')}</Text>
       </Body>
