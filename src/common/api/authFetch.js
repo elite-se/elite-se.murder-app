@@ -37,7 +37,7 @@ const fetchNewToken = async () => {
     return AuthApi.login(userConst)
   }
 
-  return AuthApi.login(user)
+  return await AuthApi.login(user)
     .catch(ApiError.handle(new Map([[403, handleUserIsUnknown]])))
 }
 
