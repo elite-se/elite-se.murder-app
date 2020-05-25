@@ -10,7 +10,7 @@
       "android",
       "web"
     ],
-    "version": "0.1.0",
+    "version": "0.1.1",
     "orientation": "portrait",
     "entryPoint": "./src/App.js",
     "icon": "./assets/icon.png",
@@ -37,6 +37,11 @@
     },
     "androidStatusBar": {
       "backgroundColor": "#C1272D"
+    },
+    "notification": {
+      "icon": "./assets/notifications_icon.png",
+      "color": "#000000",
+      "iosDisplayInForeground": true
     }
   }
 }

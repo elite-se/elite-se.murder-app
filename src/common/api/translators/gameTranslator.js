@@ -1,6 +1,6 @@
 // @flow
 
-import type { Game, GameState } from '../types/game'
+import type { Game, GameState } from '../../types/game'
 
 type ApiGame = {|
   ...$Diff<Game, { state: GameState }>,

@@ -65,6 +65,17 @@ export default {
     deviceName: 'Device name: ',
     deviceYearClass: 'Device year class: ',
     attributions: 'Attributions: ',
-    iconAttribution: 'Icon made by mavadee from www.flaticon.com'
+    iconAttribution: 'Icon made by mavadee from www.flaticon.com',
+    pushToken: 'Push token: '
+  },
+  notificationChannels: {
+    gameEnd: {
+      name: 'Game ended',
+      description: 'Appears once when a game has ended'
+    },
+    assignment: {
+      name: 'Murder assignment',
+      description: 'Appears when you were assigned to a victim'
+    }
   }
 }

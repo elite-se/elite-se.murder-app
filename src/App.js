@@ -4,7 +4,7 @@ import React from 'react'
 import { AppLoading, registerRootComponent } from 'expo'
 import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
-import configureStore from './common/redux/configureStore'
+import { persistor, store } from './common/redux/configureStore'
 import type { Store } from 'redux'
 import type { Persistor } from 'redux-persist/es/types'
 import { Provider } from 'react-redux'
@@ -14,6 +14,9 @@ import translations from './common/localization/translations'
 import * as Localization from 'expo-localization'
 import { Root } from 'native-base'
 import Navigation from './nav/Navigation'
+import initPushNotifications from './common/functions/initPushNotifications'
+import { toastifyError } from './common/funtions/errorHandling'
+import UserApi from './common/api/paths/userApi'
 
 type StateType = {
   fontsReady: boolean,
@@ -35,8 +38,14 @@ class App extends React.Component<{}, StateType> {
   }
 
   async componentDidMount () {
-    const { store, persistor } = configureStore()
+    // init redux
     this.setState({ store, persistor })
+
+    // register for push notifications and update locale on server
+    initPushNotifications()
+    UserApi.setLocale(i18n.currentLocale()).catch(toastifyError)
+
+    // preload fonts
     await Font.loadAsync({
       Roboto: require('native-base/Fonts/Roboto.ttf'),
       Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),

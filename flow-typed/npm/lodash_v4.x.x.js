@@ -1,5 +1,5 @@
-// flow-typed signature: 85910550af0edb4b41c3057c6b4f98e0
-// flow-typed version: 57bb94fcc5/lodash_v4.x.x/flow_>=v0.104.x
+// flow-typed signature: 248b802a78d0db00b328e92bc09c4bb9
+// flow-typed version: b0b4fd2f79/lodash_v4.x.x/flow_>=v0.104.x
 
 declare module "lodash" {
   declare type Path = $ReadOnlyArray<string | number> | string | number;
@@ -599,7 +599,7 @@ declare module "lodash" {
       predicate?: ?OPredicate<A, T>,
       fromIndex?: ?number
     ): R;
-    flatMap<A, U, T: $ReadOnlyArray<A> = Array<A>>(
+    flatMap<A, K, U, T: $ReadOnlyArray<A> = Array<A>>(
       array: T,
       iteratee?: ?AFlatMapIteratee<A, T, U>
     ): Array<U>;
@@ -1700,16 +1700,16 @@ declare module "lodash/fp" {
     ): Array<T>;
     differenceWith<T>(
       comparator: Comparator<T>
-    ): ((first: $ReadOnlyArray<T>) => (second: $ReadOnlyArray<T>) => Array<T>) &
-      ((first: $ReadOnlyArray<T>, second: $ReadOnlyArray<T>) => Array<T>);
+    ): ((first: $ReadOnly<T>) => (second: $ReadOnly<T>) => Array<T>) &
+      ((first: $ReadOnly<T>, second: $ReadOnly<T>) => Array<T>);
     differenceWith<T>(
       comparator: Comparator<T>,
-      first: $ReadOnlyArray<T>
-    ): (second: $ReadOnlyArray<T>) => Array<T>;
+      first: $ReadOnly<T>
+    ): (second: $ReadOnly<T>) => Array<T>;
     differenceWith<T>(
       comparator: Comparator<T>,
-      first: $ReadOnlyArray<T>,
-      second: $ReadOnlyArray<T>
+      first: $ReadOnly<T>,
+      second: $ReadOnly<T>
     ): Array<T>;
     drop<T>(n: number): (array: $ReadOnlyArray<T>) => Array<T>;
     drop<T>(n: number, array: $ReadOnlyArray<T>): Array<T>;

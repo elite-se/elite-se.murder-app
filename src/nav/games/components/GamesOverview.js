@@ -7,15 +7,16 @@ import { getGames } from '../../../common/redux/selectors'
 import { Content, Text } from 'native-base'
 import type { Action } from '../../../common/redux/actions'
 import { addOrReplaceGame, removeGame } from '../../../common/redux/actions'
-import GamesApi from '../../../common/api/gamesApi'
+import GamesApi from '../../../common/api/paths/gamesApi'
 import { RefreshControl, StyleSheet, View } from 'react-native'
 import ApiError from '../../../common/api/apiError'
 import GamesList from './GamesList'
 import NewGameFab from './NewGameFab'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import { toastifyError } from '../../../common/funtions/errorHandling'
-import { sortBy, isEmpty } from 'lodash'
+import { isEmpty, sortBy } from 'lodash'
 import i18n from 'i18n-js'
+import { EventSubscription, Notification, Notifications } from 'expo'
 
 type PropsType = {|
   games: Game[],
@@ -29,12 +30,36 @@ type StateType = {|
 |}
 
 class GamesOverview extends React.Component<PropsType, StateType> {
+  notificationsSubscription: ?EventSubscription = null
   state = {
     loading: false
   }
 
+  handleNotification = (notification: Notification) => {
+    const gameId: ?number = notification.data?.gameId
+    const selected = (notification.origin === 'selected')
+    if (!gameId) return
+
+    GamesApi.getGame(gameId)
+      .catch(ApiError.handle(new Map([[404, () => null]])))
+      .then(game => {
+        if (game) {
+          this.props.addGame(game)
+          if (selected) {
+            this.props.navigation.navigate('Game', { game })
+          }
+        }
+      })
+      .catch(toastifyError)
+  }
+
   componentDidMount () {
+    this.notificationsSubscription = Notifications.addListener(this.handleNotification)
     this.refreshGames()
+  }
+
+  componentWillUnmount () {
+    this.notificationsSubscription && this.notificationsSubscription.remove()
   }
 
   /**
@@ -45,7 +70,7 @@ class GamesOverview extends React.Component<PropsType, StateType> {
    */
   fetchGameAgain: (Game) => Promise<?Game> = (game: Game) => GamesApi.getGame(game.id)
     .then(game => game.deleted ? null : game)
-    .catch(error => ApiError.handle(error, new Map([
+    .catch(ApiError.handle(new Map([
       [404, () => null]
     ])))
 
