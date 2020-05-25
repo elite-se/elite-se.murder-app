@@ -5,7 +5,6 @@
     "description": "",
     "githubUrl": "https://github.com/elKei24/murder-app",
     "privacy": "unlisted",
-    "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
       "android",
