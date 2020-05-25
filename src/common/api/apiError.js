@@ -17,7 +17,8 @@ export default class ApiError extends Error {
   constructor (response: Response, errorDetails?: ApiErrorDetails) {
     super((errorDetails && !isEmpty(errorDetails.message) && errorDetails.message !== 'No message available')
       ? errorDetails.message
-      : response.statusText)
+      : response?.statusText ||
+        response?.status ? `API responded with error ${response.status}` : 'API error')
     this.response = response
     this.errorDetails = errorDetails
   }
