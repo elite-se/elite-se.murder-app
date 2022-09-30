@@ -4,7 +4,7 @@ import React from 'react'
 import { Content, Grid, Row, Text } from 'native-base'
 import AboutRow from '../../addgame/components/AboutRow'
 import Constants from 'expo-constants'
-import i18n from 'i18n-js'
+import i18n from '../../../common/localization/i18n'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import { Notifications } from 'expo'
 

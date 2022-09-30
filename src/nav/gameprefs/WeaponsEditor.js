@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Body, Button, CheckBox, Icon, ListItem, Right, Text } from 'native-base'
-import i18n from 'i18n-js'
+import i18n from '../../common/localization/i18n'
 import { isEmpty } from 'lodash'
 import type { NewWeapon, Weapon } from '../../common/types/weapon'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'

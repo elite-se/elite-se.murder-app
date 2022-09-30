@@ -3,7 +3,7 @@
 import React from 'react'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import { Content, Form, Text } from 'native-base'
-import i18n from 'i18n-js'
+import i18n from '../../../common/localization/i18n'
 import { connect } from 'react-redux'
 import { getPlayerName } from '../../../common/redux/selectors'
 import { addOrReplaceGame, setPlayerName } from '../../../common/redux/actions'

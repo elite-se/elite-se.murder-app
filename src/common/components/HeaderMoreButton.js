@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Button, Icon } from 'native-base'
-import i18n from 'i18n-js'
+import i18n from '../localization/i18n'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import type { MenuEntry } from '../functions/showPopupMenu'
 import showPopupMenu from '../functions/showPopupMenu'

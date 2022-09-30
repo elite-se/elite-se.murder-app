@@ -4,7 +4,7 @@ import * as React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Button, Footer, FooterTab, Icon, Text } from 'native-base'
 import type { NavigationScreenProp, NavigationState, NavigationStateRoute } from 'react-navigation'
-import i18n from 'i18n-js'
+import i18n from '../../../common/localization/i18n'
 import GameParticipantsScreen from './GameParticipantsScreen'
 import GamePreferencesScreen from './GamePreferencesScreen'
 

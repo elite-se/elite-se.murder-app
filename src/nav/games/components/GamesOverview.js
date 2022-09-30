@@ -15,7 +15,7 @@ import NewGameFab from './NewGameFab'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 import { toastifyError } from '../../../common/funtions/errorHandling'
 import { isEmpty, sortBy } from 'lodash'
-import i18n from 'i18n-js'
+import i18n from '../../../common/localization/i18n'
 import { EventSubscription, Notification, Notifications } from 'expo'
 
 type PropsType = {|

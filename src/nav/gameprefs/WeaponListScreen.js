@@ -5,7 +5,7 @@ import { Body, Button, Content, Icon, Input, List, ListItem, Right, Text } from 
 import type { NewWeapon } from '../../common/types/weapon'
 import { MIN_WEAPON_NAME_LENGTH } from '../../common/types/weapon'
 import { find, sortBy, union, without } from 'lodash'
-import i18n from 'i18n-js'
+import i18n from '../../common/localization/i18n'
 
 type PropsType = {|
   +initialWeapons: NewWeapon[],

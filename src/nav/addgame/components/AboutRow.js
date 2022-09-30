@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Col, Row, Text } from 'native-base'
-import i18n from 'i18n-js'
+import i18n from '../../../common/localization/i18n'
 
 type PropsType = {|
   name?: string,

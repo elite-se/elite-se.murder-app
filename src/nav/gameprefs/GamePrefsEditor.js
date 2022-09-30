@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Body, CheckBox, ListItem, Text, Textarea } from 'native-base'
-import i18n from 'i18n-js'
+import i18n from '../../common/localization/i18n'
 import WeaponsEditor from './WeaponsEditor'
 import type { GamePreferences, NewGamePreferences } from '../../common/types/gamePreferences'
 import type { NewWeapon } from '../../common/types/weapon'

@@ -5,7 +5,7 @@ import { Notifications } from 'expo'
 import * as Permissions from 'expo-permissions'
 import UserApi from '../api/paths/userApi'
 import { toastifyError } from '../funtions/errorHandling'
-import i18n from 'i18n-js'
+import i18n from '../localization/i18n'
 
 const channelDefaults: Channel = {
   sound: true,

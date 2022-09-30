@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import i18n from 'i18n-js'
+import i18n from '../localization/i18n'
 import { Input, Item, Label } from 'native-base'
 import { InputDescription } from './InputDescription'
 

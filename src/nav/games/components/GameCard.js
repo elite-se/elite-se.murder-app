@@ -3,7 +3,7 @@
 import React from 'react'
 import type { Game } from '../../../common/types/game'
 import { Card, CardItem, Icon, Text } from 'native-base'
-import i18n from 'i18n-js'
+import i18n from '../../../common/localization/i18n'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import type { NavigationScreenProp, NavigationState } from 'react-navigation'
 
