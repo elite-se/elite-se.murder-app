@@ -7,6 +7,7 @@ import type { NavigationScreenProp, NavigationState, NavigationStateRoute } from
 import i18n from 'i18n-js'
 import GameParticipantsScreen from './GameParticipantsScreen'
 import GamePreferencesScreen from './GamePreferencesScreen'
+import GameMurderAssignmentScreen from './GameMurderAssignmentScreen';
 
 const Tab = createBottomTabNavigator()
 
@@ -48,6 +49,10 @@ export default class GameTabsScreen extends React.Component<PropsType> {
 
   render () {
     return <Tab.Navigator tabBar={this.buildTabBar} backBehavior='none'>
+      <Tab.Screen name="Game.MurderAssignment" component={this.addGameProp(GameMurderAssignmentScreen)} options={{
+        title: i18n.t('game.murderAssignment.title'),
+        icon: <Icon name='target' type="MaterialCommunityIcons"/>
+      }}/>
       <Tab.Screen name="Game.Participants" component={this.addGameProp(GameParticipantsScreen)} options={{
         title: i18n.t('game.participants.title'),
         icon: <Icon android='md-people' ios='ios-people'/>

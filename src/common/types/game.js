@@ -2,6 +2,7 @@
 
 import type { GamePreferences, NewGamePreferences } from './gamePreferences'
 import type { NewPlayer, Player } from './player'
+import type {MurderAssignment} from "./murderAssignment";
 
 export const GAME_CODE_LENGTH = 6
 export const MIN_GAME_TITLE_LENGTH = 3
@@ -23,5 +24,6 @@ export type Game = {|
     ...NewGame,
     preferences: GamePreferences,
     owner: Player,
-    players: Player[]
+    players: Player[],
+    assignments: MurderAssignment[]
 |}
